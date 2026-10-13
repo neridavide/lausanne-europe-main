@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leader area | Lausanne Europe</title>
+  <link rel="stylesheet" href="css/wireframe.css">
+  <script type="module" src="/js/placeholder-state.js"></script>
+</head>
+<body>
+  <div class="wf-banner">Prototype. <a href="index.html">All pages</a></div>
+  <header class="wf-header">
+    <div class="wf-header-inner">
+      <a href="homepage.html" class="wf-logo"><span class="wf-logo-mark"></span>Lausanne Europe</a>
+      <nav class="wf-nav">
+        <a href="national-movements.html">National Movements</a>
+        <a href="connect.html">Connect</a>
+        <a href="conversation.html">Conversation</a>
+        <a href="get-involved.html">Get Involved</a>
+        <a href="about.html">About</a>
+        <a href="donate.html">Donate</a>
+        <a href="leader-area.html" class="wf-utility active">Leader login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wf-main wf-page-utility wf-page-leader-area">
+    <nav class="wf-breadcrumb"><a href="homepage.html">Home</a> / Leader area</nav>
+
+    <div class="wf-brief">
+      <span class="wf-brief-label">Note</span>
+      All of this is behind login. Not public. Address book feeds from JotForm into Airtable or Google Sheets. Still checking with Janet which we use.
+    </div>
+
+    <div class="wf-login-box">
+      <h1 class="wf-page-title" style="font-size:1.5rem;text-align:center">Leader area</h1>
+      <p class="wf-copy" style="text-align:center;font-size:14px;margin-bottom:28px">[Short line on who can access this]</p>
+      <div class="wf-form-field"><label>[Email label]</label><div class="wf-input">[Field placeholder]</div></div>
+      <div class="wf-form-field"><label>[Password label]</label><div class="wf-input">[Field placeholder]</div></div>
+      <a href="#dashboard" class="wf-btn wf-btn-primary" style="display:block;text-align:center;width:100%">[Log in]</a>
+      <p style="text-align:center;font-size:13px;margin-top:20px"><a href="#">[Request access]</a> | <a href="#">[Update profile via JotForm]</a></p>
+    </div>
+
+    <hr class="wf-prototype-divider">
+
+    <div id="dashboard">
+      <span class="wf-label">Logged-in view (shown below for prototype review)</span>
+      <h2 class="wf-section-heading" style="margin-top:12px">Leader dashboard</h2>
+
+      <div class="wf-tabs">
+        <span class="wf-tab active">[Address book]</span>
+        <span class="wf-tab">[Internal resources]</span>
+        <span class="wf-tab">[My profile]</span>
+      </div>
+
+      <div class="wf-filter-bar">
+        <select><option>[Country]</option></select>
+        <select><option>[Role]</option></select>
+        <input type="search" placeholder="[Search leaders]">
+        <a href="#" class="wf-btn wf-btn-outline">[Add / update via JotForm]</a>
+      </div>
+
+      <div class="wf-block">
+        <div class="wf-list-item">
+          <div class="wf-avatar"></div>
+          <div style="flex:1"><strong class="wf-copy">[Name]</strong> | <span class="wf-copy">[Country | role]</span><br><span class="wf-copy" style="font-size:13px">[Email | last updated]</span></div>
+          <a href="#" class="wf-btn wf-btn-outline">[View]</a>
+        </div>
+        <div class="wf-list-item">
+          <div class="wf-avatar"></div>
+          <div style="flex:1"><strong class="wf-copy">[Name]</strong> | <span class="wf-copy">[Country | role]</span><br><span class="wf-copy" style="font-size:13px">[Email]</span></div>
+          <a href="#" class="wf-btn wf-btn-outline">[View]</a>
+        </div>
+      </div>
+
+      <h2 class="wf-section-heading">Internal resources</h2>
+      <div class="wf-grid wf-grid-3">
+        <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">[Resource title]</h3><p class="wf-copy">[File type | access note]</p></div></div>
+        <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">[Resource title]</h3><p class="wf-copy">[File type | access note]</p></div></div>
+        <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">[Resource title]</h3><p class="wf-copy">[File type | access note]</p></div></div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
