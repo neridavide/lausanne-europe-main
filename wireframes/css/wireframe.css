@@ -337,6 +337,7 @@ h1, h2, h3, h4, .wf-page-title, .wf-section-heading {
 .wf-hero h1 {
   font-size: clamp(2.25rem, 5vw, 3.25rem);
   color: #fff;
+  font-style: normal;
   margin: 0 auto 28px;
   max-width: 30ch;
   line-height: .96;
@@ -902,15 +903,22 @@ a.wf-card:hover {
   position: relative;
   z-index: 2;
   margin-top: -76px;
-  padding-top: 38px;
+  padding-top: 44px;
+  padding-bottom: 74px;
   background: var(--brand-surface);
   border-radius: 12px 12px 0 0;
   box-shadow: 0 18px 44px rgba(9, 59, 78, .15);
 }
 
-.wf-home-main > .wf-label {
-  margin: 0 0 18px;
-  text-align: center;
+.wf-home-intro-heading {
+  margin: 0 0 24px;
+  color: var(--brand-blue);
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
+  font-weight: 700;
+  letter-spacing: .02em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 .wf-home-pillars {
@@ -949,6 +957,95 @@ a.wf-card:hover {
   position: relative;
   max-width: 18ch;
   color: var(--brand-navy);
+}
+
+.wf-home-events-band {
+  background: linear-gradient(120deg, #083f5a, #087a7a);
+  padding: 92px 24px 96px;
+}
+
+.wf-home-band-inner {
+  max-width: var(--brand-max);
+  margin: 0 auto;
+}
+
+.wf-home-band-title,
+.wf-home-story-title {
+  margin: 0 0 30px;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.3vw, 3rem);
+  line-height: .98;
+  text-transform: uppercase;
+}
+
+.wf-home-band-title { color: #fff; }
+
+.wf-home-events { gap: 26px; }
+
+.wf-home-events .wf-card {
+  overflow: hidden;
+  border: 0;
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 16px 38px rgba(0, 26, 45, .22);
+}
+
+.wf-home-events .wf-card:nth-child(2) .wf-card-img {
+  background: linear-gradient(135deg, #126a92, #06a09a);
+}
+
+.wf-home-stories-band {
+  background: #fff;
+  padding: 94px 24px 96px;
+}
+
+.wf-home-story-title {
+  color: var(--brand-blue);
+}
+
+.wf-home-story-feature {
+  display: grid;
+  grid-template-columns: minmax(280px, 1.1fr) 1fr;
+  background: #edf6f4;
+  min-height: 370px;
+}
+
+.wf-home-story-media {
+  display: flex;
+  align-items: flex-end;
+  min-height: 300px;
+  padding: 28px;
+  background:
+    linear-gradient(135deg, rgba(6, 67, 95, .18), rgba(0, 0, 0, .34)),
+    linear-gradient(135deg, #1684ad, #057572);
+  color: rgba(255,255,255,.82);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.wf-home-story-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px;
+}
+
+.wf-home-story-copy h3 {
+  margin: 14px 0;
+  color: var(--brand-navy);
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 2.8vw, 2.65rem);
+  line-height: .98;
+}
+
+.wf-home-story-copy p {
+  max-width: 38rem;
+  margin: 0 0 24px;
+  color: var(--brand-muted);
+  line-height: 1.6;
 }
 
 .wf-home-heading::before {
@@ -1097,6 +1194,10 @@ a.wf-card:hover {
 
   .wf-home-events .wf-card-img {
     min-height: 170px;
+  }
+
+  .wf-home-story-feature {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1463,7 +1564,11 @@ a.wf-card:hover {
     padding-top: 28px;
     border-radius: 10px 10px 0 0;
   }
-  .wf-home-main > .wf-label { margin-top: 0; }
+  .wf-home-intro-heading { margin-bottom: 20px; }
+  .wf-home-events-band,
+  .wf-home-stories-band { padding: 62px 18px; }
+  .wf-home-story-copy { padding: 30px 24px 34px; }
+  .wf-home-story-media { min-height: 230px; }
   .wf-home-pillars .wf-pillar { min-height: 145px; }
   .wf-home-paths .wf-audience-path { min-height: 0; }
   .wf-home-events .wf-card-body { padding: 24px; }
