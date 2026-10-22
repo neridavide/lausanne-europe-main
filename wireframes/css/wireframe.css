@@ -338,7 +338,7 @@ h1, h2, h3, h4, .wf-page-title, .wf-section-heading {
   font-size: clamp(2.25rem, 5vw, 3.25rem);
   color: #fff;
   margin: 0 auto 28px;
-  max-width: 24ch;
+  max-width: 30ch;
   line-height: .96;
   letter-spacing: .01em;
 }
