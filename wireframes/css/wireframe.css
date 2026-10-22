@@ -682,25 +682,16 @@ a.wf-card:hover {
 }
 
 .wf-footer {
-  background: linear-gradient(130deg, #082d42, var(--brand-navy) 55%, #075b64);
-  color: rgba(255, 255, 255, 0.75);
-  padding: 68px 24px 32px;
-  margin-top: 96px;
+  background: #241f20;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 76px 24px 34px;
+  margin-top: 0;
   position: relative;
   overflow: hidden;
 }
 
 .wf-footer::before {
-  content: "";
-  position: absolute;
-  width: 360px;
-  height: 360px;
-  top: -230px;
-  right: -70px;
-  border: 1px solid rgba(80, 201, 180, .3);
-  border-radius: 50%;
-  box-shadow: 0 0 0 45px rgba(80, 201, 180, .06), 0 0 0 90px rgba(80, 201, 180, .04);
-  pointer-events: none;
+  content: none;
 }
 
 .wf-footer-inner {
@@ -717,14 +708,16 @@ a.wf-card:hover {
   width: 238px;
   height: 71px;
   margin-bottom: 16px;
+  filter: brightness(0) invert(1) grayscale(1);
 }
 
 .wf-footer h4 {
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   color: #fff;
-  font-size: 15px;
+  font-size: 13px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.2em;
   margin: 0 0 18px;
 }
 
@@ -735,11 +728,14 @@ a.wf-card:hover {
 }
 
 .wf-footer li {
-  margin-bottom: 11px;
+  margin-bottom: 12px;
 }
 
 .wf-footer a {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.86);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .wf-footer a:hover {
@@ -751,7 +747,7 @@ a.wf-card:hover {
   max-width: var(--brand-max);
   margin: 32px auto 0;
   padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   font-size: 13px;
   display: flex;
   justify-content: space-between;
