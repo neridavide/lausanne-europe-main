@@ -708,7 +708,9 @@ a.wf-card:hover {
   width: 238px;
   height: 71px;
   margin-bottom: 16px;
-  filter: brightness(0) invert(1) grayscale(1);
+  background-color: transparent;
+  background-image: url("../assets/lausanne-europe-logo-dark-footer.png");
+  filter: none;
 }
 
 .wf-footer h4 {
