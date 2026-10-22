@@ -25,31 +25,31 @@
   </header>
 
   <main class="wf-newsletter-page">
-    <section class="wf-newsletter-hero">
+    <section class="wf-newsletter-hero" aria-labelledby="newsletter-title">
       <div class="wf-newsletter-hero-inner">
-        <nav class="wf-breadcrumb"><a href="homepage.html">Home</a> / Subscribe</nav>
-        <h1>Stay connected</h1>
-        <p>Receive news, stories, resources, and opportunities to connect across Lausanne Europe.</p>
-      </div>
-    </section>
-
-    <section class="wf-newsletter-form-section">
-      <div class="wf-newsletter-form-intro">
-        <h2>Receive Lausanne Europe updates</h2>
-        <p>Tell us a little about yourself so we can share relevant news and opportunities. This is a wireframe form; it is not connected to a mailing-list service yet.</p>
-      </div>
-      <form class="wf-newsletter-form">
-        <div class="wf-newsletter-form-row">
-          <div class="wf-form-field"><label for="newsletter-first-name">First name <span>*</span></label><input class="wf-input" id="newsletter-first-name" type="text" placeholder="First name"></div>
-          <div class="wf-form-field"><label for="newsletter-last-name">Last name <span>*</span></label><input class="wf-input" id="newsletter-last-name" type="text" placeholder="Last name"></div>
+        <div class="wf-newsletter-copy">
+          <p class="wf-newsletter-kicker">The movement, in your inbox</p>
+          <h1 id="newsletter-title">Stay <span>connected.</span></h1>
+          <p>The Great Commission is a global story, and you&rsquo;re part of it.</p>
         </div>
-        <div class="wf-form-field"><label for="newsletter-email">Email address <span>*</span></label><input class="wf-input" id="newsletter-email" type="email" placeholder="you@example.com"></div>
-        <div class="wf-form-field"><label for="newsletter-country">Country <span>*</span></label><select class="wf-input" id="newsletter-country"><option>Select your country</option><option>Albania</option><option>France</option><option>Germany</option><option>Italy</option><option>Spain</option><option>United Kingdom</option><option>Other</option></select></div>
-        <div class="wf-form-field"><label for="newsletter-role">Which description best fits you? <span>*</span></label><select class="wf-input" id="newsletter-role"><option>Select an option</option><option>Church or ministry leader</option><option>Mission practitioner</option><option>Student or emerging leader</option><option>Church member or supporter</option><option>Other</option></select></div>
-        <label class="wf-newsletter-consent"><input type="checkbox"> <span>Yes, please keep me informed about Lausanne Europe news, resources, gatherings, and opportunities.</span></label>
-        <p class="wf-newsletter-privacy">We respect your privacy. By subscribing, you agree to receive Lausanne Europe emails in line with our <a href="legal.html">privacy policy</a>. You may unsubscribe at any time.</p>
-        <button type="button" class="wf-btn wf-btn-primary">Subscribe</button>
-      </form>
+        <form class="wf-newsletter-form">
+          <p class="wf-newsletter-form-kicker">Your starting point</p>
+          <h2>Get Lausanne Europe updates</h2>
+          <p class="wf-newsletter-form-lede">Stories, resources, and ways to engage with the church across Europe, in one regular email.</p>
+          <div class="wf-form-field"><label for="newsletter-first-name">First name</label><input class="wf-input" id="newsletter-first-name" type="text" placeholder="Your first name"></div>
+          <div class="wf-form-field"><label for="newsletter-last-name">Last name <span>&middot; optional</span></label><input class="wf-input" id="newsletter-last-name" type="text" placeholder="Your last name"></div>
+          <div class="wf-form-field"><label for="newsletter-email">Email address</label><input class="wf-input" id="newsletter-email" type="email" placeholder="you@example.com"></div>
+          <div class="wf-newsletter-captcha" role="presentation" aria-label="CAPTCHA placeholder">
+            <span class="wf-newsletter-captcha-box" aria-hidden="true"></span>
+            <span>I&rsquo;m not a robot</span>
+            <span class="wf-newsletter-captcha-mark" aria-hidden="true">↻<small>reCAPTCHA</small></span>
+          </div>
+          <p class="wf-newsletter-selected">Selected emails: Lausanne Europe updates</p>
+          <a class="wf-newsletter-choices" href="#email-choices">Review your email choices</a>
+          <button type="button" class="wf-btn wf-btn-primary wf-newsletter-submit">Subscribe to receive updates <span aria-hidden="true">&rsaquo;</span></button>
+          <p class="wf-newsletter-privacy">After subscribing, you can choose additional Lausanne Europe emails and personalise what you receive. By continuing, you agree to our <a href="legal.html">privacy policy</a>.</p>
+        </form>
+      </div>
     </section>
   </main>
 
