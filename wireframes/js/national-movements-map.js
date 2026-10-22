@@ -130,3 +130,44 @@ if (mapNode) {
     });
   });
 }
+
+const directoryNode = document.querySelector('[data-country-directory]');
+const directorySearch = document.querySelector('[data-directory-search]');
+const directoryStatus = document.querySelector('[data-directory-status]');
+
+if (directoryNode) {
+  const abbreviation = (name) => name
+    .split(/[\s-]+/)
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
+  const directory = countryRecords
+    .map(([, name, status]) => ({ name, status }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  const renderDirectory = () => {
+    const searchTerm = directorySearch?.value.trim().toLocaleLowerCase() ?? '';
+    const selectedStatus = directoryStatus?.value ?? '';
+    const matchingCountries = directory.filter(({ name, status }) => (
+      (!searchTerm || name.toLocaleLowerCase().includes(searchTerm))
+      && (!selectedStatus || status === selectedStatus)
+    ));
+
+    directoryNode.innerHTML = matchingCountries.map(({ name, status }) => {
+      const href = `country-profile.html?${new URLSearchParams({ country: name, status })}`;
+      return `<a class="wf-country-row" href="${href}" aria-label="View ${name}: ${statusLabel(status)}">
+        <span class="wf-country-mark" aria-hidden="true">${abbreviation(name)}</span>
+        <span class="wf-country-row-copy">
+          <strong>${name}</strong>
+          <span class="wf-country-status wf-country-status-${status}"><i></i>${statusLabel(status)}</span>
+        </span>
+        <span class="wf-country-row-arrow" aria-hidden="true">›</span>
+      </a>`;
+    }).join('') || '<p class="wf-country-directory-empty">No countries match this filter.</p>';
+  };
+
+  directorySearch?.addEventListener('input', renderDirectory);
+  directoryStatus?.addEventListener('change', renderDirectory);
+  renderDirectory();
+}

@@ -34,7 +34,7 @@
       <div class="wf-movement-map-heading">
         <div>
           <p class="wf-eyebrow">Explore the network</p>
-          <h2 id="movement-map-heading">Find a Lausanne movement</h2>
+          <h2 id="movement-map-heading">Find a National Movement</h2>
         </div>
         <p>Choose a country to view its national movement profile.</p>
       </div>
@@ -54,24 +54,20 @@
     </section>
 
     <div class="wf-filter-bar">
-      <select><option>Filter by region</option></select>
-      <input type="search" placeholder="Search countries">
-      <select><option>Filter by movement status</option></select>
+      <input type="search" data-directory-search placeholder="Search countries" aria-label="Search countries">
+      <select data-directory-status aria-label="Filter by movement status">
+        <option value="">All movement statuses</option>
+        <option value="active">Active movement</option>
+        <option value="emerging">Emerging movement</option>
+        <option value="none">No movement</option>
+      </select>
     </div>
 
-    <h2 class="wf-section-heading" style="margin-top:24px">Country directory</h2>
-    <p class="wf-copy">Find out more and learn how to make contact with the Lausanne movement in your country.</p>
-    <div class="wf-block">
-      <div class="wf-list-item">
-        <div style="flex:1"><strong class="wf-copy">Active national movements</strong> | <span class="wf-copy">Denmark, France, Germany, Ireland, Italy, Netherlands, Norway, Portugal, Slovakia, Spain, Switzerland</span></div>
-      </div>
-      <div class="wf-list-item">
-        <div style="flex:1"><strong class="wf-copy">Emerging movements &mdash; contact available</strong> | <span class="wf-copy">Albania, Belgium, Bosnia and Herzegovina, Bulgaria, Croatia, Cyprus, Czechia, Estonia, Finland, Great Britain, Greece, Hungary, Iceland, Kosovo, Latvia, Lithuania, Malta, Romania, Serbia, Slovenia, Sweden, Ukraine</span></div>
-      </div>
-      <div class="wf-list-item">
-        <div style="flex:1"><strong class="wf-copy">No movement yet</strong> | <span class="wf-copy">Austria, Faroe Islands, Luxembourg, Macedonia, Montenegro, Poland, Turkey</span></div>
-      </div>
-    </div>
+    <section class="wf-country-directory" aria-labelledby="country-directory-heading">
+      <h2 class="wf-section-heading" id="country-directory-heading">Country directory</h2>
+      <p class="wf-copy">Find out more and learn how to make contact with the Lausanne movement in your country.</p>
+      <div class="wf-country-list" data-country-directory aria-live="polite"></div>
+    </section>
 
     <div class="wf-brief">
       <span class="wf-brief-label">No movement in your country yet?</span>
