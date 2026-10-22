@@ -1867,6 +1867,56 @@ a.wf-card:hover {
 
 .wf-country-directory-empty { margin: 0; padding: 32px; color: #596970; background: #fff; border-radius: 11px; }
 
+.wf-country-invitation {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 42px;
+  margin-top: 20px;
+  padding: 50px 58px;
+  overflow: hidden;
+  color: #173f45;
+  background: #e7f5f3;
+  border-radius: 14px;
+  position: relative;
+}
+
+.wf-country-invitation::after {
+  content: "";
+  position: absolute;
+  right: -56px;
+  bottom: -93px;
+  width: 350px;
+  height: 240px;
+  opacity: .34;
+  background-image: radial-gradient(circle, #66bcb2 2px, transparent 2.5px);
+  background-size: 18px 18px;
+  pointer-events: none;
+}
+
+.wf-country-invitation-copy { position: relative; z-index: 1; max-width: 44rem; }
+.wf-country-invitation .wf-eyebrow {
+  margin: 0 0 12px;
+  color: #147b73;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.wf-country-invitation h2 {
+  margin: 0 0 18px;
+  color: #241f20;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1;
+}
+
+.wf-country-invitation p:last-child { max-width: 42rem; margin: 0; font-size: 1.06rem; line-height: 1.65; }
+.wf-country-invitation p:last-child a { color: #087b7b; font-weight: 700; }
+.wf-country-invitation .wf-btn { position: relative; z-index: 1; flex: 0 0 auto; margin-top: 4px; white-space: nowrap; }
+.wf-country-invitation .wf-btn span { margin-left: 10px; font-size: 1.35em; line-height: 0; vertical-align: -1px; }
+
 .wf-page-profile .wf-sidebar-layout > :first-child {
   padding: 36px;
   border-radius: 12px;
@@ -2025,6 +2075,8 @@ a.wf-card:hover {
   .wf-country-mark { width: 44px; height: 44px; font-size: 11px; }
   .wf-country-row-copy { flex-direction: column; align-items: flex-start; gap: 4px; }
   .wf-country-row-arrow { font-size: 2.4rem; }
+  .wf-country-invitation { flex-direction: column; gap: 26px; padding: 36px 28px; }
+  .wf-country-invitation .wf-btn { width: auto; margin: 0; }
   .wf-page-profile .wf-sidebar-layout > :first-child { padding: 24px; }
   .wf-login-box { margin: 18px auto; padding: 26px 20px; }
 
