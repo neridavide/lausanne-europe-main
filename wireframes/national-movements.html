@@ -6,6 +6,7 @@
   <title>National Movements | Lausanne Europe</title>
   <link rel="stylesheet" href="css/wireframe.css">
   <script type="module" src="/js/placeholder-state.js"></script>
+  <script type="module" src="/js/national-movements-map.js"></script>
 </head>
 <body>
   <div class="wf-banner">Prototype. <a href="index.html">All pages</a></div>
@@ -29,7 +30,21 @@
     <h1 class="wf-page-title">National Lausanne movements for every European country</h1>
     <p class="wf-page-intro wf-copy">A national Lausanne movement connects leaders with Lausanne in their nation and national language, sharing the global network&rsquo;s resources with the national church and bringing local stories and reflection into the global conversation.</p>
 
-    <div class="wf-map">European national movement map</div>
+    <section class="wf-movement-map" aria-labelledby="movement-map-heading">
+      <div class="wf-movement-map-heading">
+        <div>
+          <p class="wf-eyebrow">Explore the network</p>
+          <h2 id="movement-map-heading">Find a Lausanne movement</h2>
+        </div>
+        <p>Choose a country to view its national movement profile.</p>
+      </div>
+      <div class="wf-map" data-national-movement-map aria-label="Interactive map of European countries"></div>
+      <div class="wf-movement-map-legend" aria-label="Map legend">
+        <span><i class="wf-map-key wf-map-key-active"></i> Active movement</span>
+        <span><i class="wf-map-key wf-map-key-emerging"></i> Emerging movement</span>
+        <span><i class="wf-map-key wf-map-key-none"></i> No movement yet</span>
+      </div>
+    </section>
 
     <div class="wf-filter-bar">
       <select><option>Filter by region</option></select>
