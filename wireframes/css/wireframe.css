@@ -895,11 +895,17 @@ a.wf-card:hover {
 
 /* Homepage: editorial composition using the existing wireframe content. */
 .wf-home-main {
-  padding-top: 0;
+  position: relative;
+  z-index: 2;
+  margin-top: -76px;
+  padding-top: 38px;
+  background: var(--brand-surface);
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 18px 44px rgba(9, 59, 78, .15);
 }
 
 .wf-home-main > .wf-label {
-  margin: 54px 0 18px;
+  margin: 0 0 18px;
   text-align: center;
 }
 
@@ -1448,7 +1454,12 @@ a.wf-card:hover {
   .wf-page-profile .wf-sidebar-layout > :first-child { padding: 24px; }
   .wf-login-box { margin: 18px auto; padding: 26px 20px; }
 
-  .wf-home-main > .wf-label { margin-top: 36px; }
+  .wf-home-main {
+    margin-top: -38px;
+    padding-top: 28px;
+    border-radius: 10px 10px 0 0;
+  }
+  .wf-home-main > .wf-label { margin-top: 0; }
   .wf-home-pillars .wf-pillar { min-height: 145px; }
   .wf-home-paths .wf-audience-path { min-height: 0; }
   .wf-home-events .wf-card-body { padding: 24px; }
