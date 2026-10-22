@@ -1663,6 +1663,55 @@ a.wf-card:hover {
   width: 100%;
   height: auto;
   min-height: 350px;
+  cursor: grab;
+  touch-action: none;
+}
+
+.wf-page-movements .wf-map svg:active { cursor: grabbing; }
+
+.wf-map-controls {
+  position: absolute;
+  z-index: 3;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  grid-template-columns: 36px 36px auto;
+  overflow: hidden;
+  background: rgba(255,255,255,.96);
+  border: 1px solid rgba(6, 62, 87, .18);
+  border-radius: 5px;
+  box-shadow: 0 4px 14px rgba(0, 26, 42, .18);
+}
+
+.wf-map-controls button {
+  min-height: 36px;
+  padding: 0 11px;
+  color: #093b4e;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid rgba(6, 62, 87, .15);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.wf-map-controls button:first-child,
+.wf-map-controls button:nth-child(2) { font-size: 21px; font-weight: 500; }
+.wf-map-controls button:last-child { border-right: 0; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+.wf-map-controls button:hover { color: #fff; background: var(--brand-teal); }
+
+.wf-map-instructions {
+  position: absolute;
+  z-index: 2;
+  bottom: 13px;
+  left: 16px;
+  margin: 0;
+  padding: 6px 9px;
+  color: rgba(255,255,255,.92);
+  background: rgba(0, 42, 62, .72);
+  border-radius: 3px;
+  font-size: 12px;
 }
 
 .wf-map-country {
@@ -1681,8 +1730,6 @@ a.wf-card:hover {
   vector-effect: non-scaling-stroke;
   pointer-events: none;
 }
-
-.wf-map-europe-focus { filter: drop-shadow(0 2px 3px rgba(0, 28, 45, .28)); }
 
 .wf-map-country-active { fill: #37c2b1; }
 .wf-map-country-emerging { fill: #75bfe3; }

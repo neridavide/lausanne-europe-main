@@ -38,11 +38,18 @@
         </div>
         <p>Choose a country to view its national movement profile.</p>
       </div>
-      <div class="wf-map" data-national-movement-map aria-label="Interactive map of European countries"></div>
+      <div class="wf-map" data-national-movement-map aria-label="Interactive map of European countries">
+        <div class="wf-map-controls" aria-label="Map controls">
+          <button type="button" data-map-action="in" aria-label="Zoom in">+</button>
+          <button type="button" data-map-action="out" aria-label="Zoom out">&minus;</button>
+          <button type="button" data-map-action="reset">Europe</button>
+        </div>
+        <p class="wf-map-instructions">Drag to explore &middot; Scroll to zoom</p>
+      </div>
       <div class="wf-movement-map-legend" aria-label="Map legend">
         <span><i class="wf-map-key wf-map-key-active"></i> Active movement</span>
         <span><i class="wf-map-key wf-map-key-emerging"></i> Emerging movement</span>
-        <span><i class="wf-map-key wf-map-key-none"></i> No movement yet</span>
+        <span><i class="wf-map-key wf-map-key-none"></i> No movement</span>
       </div>
     </section>
 
