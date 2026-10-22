@@ -993,59 +993,84 @@ a.wf-card:hover {
   background: linear-gradient(135deg, #126a92, #06a09a);
 }
 
-.wf-home-stories-band {
-  background: #fff;
-  padding: 94px 24px 96px;
+.wf-home-quote-band {
+  background: #4b99c8;
 }
 
-.wf-home-story-title {
-  color: var(--brand-blue);
-}
-
-.wf-home-story-feature {
+.wf-home-quote-feature {
   display: grid;
-  grid-template-columns: minmax(280px, 1.1fr) 1fr;
-  background: #edf6f4;
-  min-height: 370px;
+  grid-template-columns: minmax(320px, .9fr) 1.1fr;
+  min-height: 520px;
 }
 
-.wf-home-story-media {
+.wf-home-quote-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 74px 48px;
+  color: #fff;
+  text-align: center;
+}
+
+.wf-home-quote-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 18px;
+  font-family: Georgia, serif;
+  font-size: 5rem;
+  line-height: .5;
+}
+
+.wf-home-quote-mark::before,
+.wf-home-quote-mark::after {
+  content: "";
+  display: block;
+  width: min(31%, 210px);
+  height: 2px;
+  background: rgba(255,255,255,.55);
+}
+
+.wf-home-quote-copy p {
+  margin: 30px 0 28px;
+  font-family: var(--font-serif);
+  font-size: clamp(1.65rem, 2.35vw, 2.5rem);
+  font-style: normal;
+  line-height: 1.26;
+}
+
+.wf-home-quote-copy footer {
+  max-width: 27rem;
+  color: rgba(255,255,255,.86);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.wf-home-quote-visual {
   display: flex;
   align-items: flex-end;
-  min-height: 300px;
-  padding: 28px;
+  justify-content: center;
+  min-height: 340px;
+  padding: 32px;
   background:
-    linear-gradient(135deg, rgba(6, 67, 95, .18), rgba(0, 0, 0, .34)),
-    linear-gradient(135deg, #1684ad, #057572);
-  color: rgba(255,255,255,.82);
+    radial-gradient(circle at 76% 38%, rgba(255,255,255,.3) 0 1%, transparent 1.2%) 0 0 / 48px 48px,
+    linear-gradient(135deg, rgba(5, 74, 113, .16), rgba(0, 0, 0, .18)),
+    linear-gradient(135deg, #77b6d6, #2b79ac);
+  color: rgba(255,255,255,.7);
   font-family: var(--font-heading);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
 }
 
-.wf-home-story-copy {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 48px;
-}
-
-.wf-home-story-copy h3 {
-  margin: 14px 0;
-  color: var(--brand-navy);
-  font-family: var(--font-heading);
-  font-size: clamp(1.8rem, 2.8vw, 2.65rem);
-  line-height: .98;
-}
-
-.wf-home-story-copy p {
-  max-width: 38rem;
-  margin: 0 0 24px;
-  color: var(--brand-muted);
-  line-height: 1.6;
+.wf-home-stories-band {
+  background: #fff;
+  padding: 94px 24px 96px;
 }
 
 .wf-home-heading::before {
@@ -1196,7 +1221,7 @@ a.wf-card:hover {
     min-height: 170px;
   }
 
-  .wf-home-story-feature {
+  .wf-home-quote-feature {
     grid-template-columns: 1fr;
   }
 }
@@ -1567,8 +1592,9 @@ a.wf-card:hover {
   .wf-home-intro-heading { margin-bottom: 20px; }
   .wf-home-events-band,
   .wf-home-stories-band { padding: 62px 18px; }
-  .wf-home-story-copy { padding: 30px 24px 34px; }
-  .wf-home-story-media { min-height: 230px; }
+  .wf-home-quote-copy { padding: 64px 24px; }
+  .wf-home-quote-copy p { font-size: clamp(1.5rem, 7vw, 2rem); }
+  .wf-home-quote-visual { min-height: 240px; }
   .wf-home-pillars .wf-pillar { min-height: 145px; }
   .wf-home-paths .wf-audience-path { min-height: 0; }
   .wf-home-events .wf-card-body { padding: 24px; }
