@@ -105,23 +105,19 @@ h1, h2, h3, h4, .wf-page-title, .wf-section-heading {
 }
 
 .wf-logo {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  color: var(--brand-navy);
-  white-space: nowrap;
+  display: block;
+  width: 246px;
+  height: 73px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  background: #fff url("../assets/lausanne-europe-logo.png") center / contain no-repeat;
+  border-radius: 2px;
+  font-size: 0;
+  line-height: 0;
 }
 
 .wf-logo-mark {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  background: radial-gradient(circle at 35% 35%, var(--brand-teal-light) 0 13%, transparent 14%), linear-gradient(135deg, var(--brand-blue), var(--brand-teal));
-  border-radius: 50%;
-  margin-right: 10px;
-  vertical-align: middle;
+  display: none;
 }
 
 .wf-nav {
@@ -713,8 +709,9 @@ a.wf-card:hover {
 }
 
 .wf-footer .wf-logo {
-  color: #fff;
-  margin-bottom: 12px;
+  width: 238px;
+  height: 71px;
+  margin-bottom: 16px;
 }
 
 .wf-footer h4 {
@@ -1356,8 +1353,7 @@ a.wf-card:hover {
     font-size: 11px;
   }
 
-  .wf-logo { font-size: 16px; }
-  .wf-logo-mark { width: 28px; height: 28px; margin-right: 7px; }
+  .wf-logo { width: 196px; height: 58px; }
 
   .wf-page-title { font-size: clamp(2.35rem, 13vw, 3.3rem); }
   .wf-page-intro { font-size: 1.06rem; }
@@ -1463,7 +1459,7 @@ a.wf-card:hover {
 
 @media (max-width: 380px) {
   .wf-header-inner { padding-left: 14px; padding-right: 14px; }
-  .wf-logo { font-size: 14px; }
+  .wf-logo { width: 170px; height: 50px; }
   .wf-header-inner::after { font-size: 13px; }
   .wf-hero h1 { font-size: 2.55rem; }
 }
