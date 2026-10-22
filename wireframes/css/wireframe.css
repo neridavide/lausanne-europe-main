@@ -1156,9 +1156,11 @@ a.wf-card:hover {
 
 .wf-home-subscribe {
   padding: 72px 24px;
-  background:
-    radial-gradient(circle at 10% 100%, rgba(255,255,255,.48) 0 3px, transparent 3.5px) 0 0 / 40px 40px,
-    linear-gradient(90deg, #4b99c8, #4595c4);
+  background-color: #4594c9;
+  background-image: url("https://lausanne.org/wp-content/themes/lausannemovement/media/svg/dot-matrix-swirl-white-horizontal.svg");
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 728px auto;
 }
 
 .wf-home-subscribe-inner {
@@ -1647,7 +1649,10 @@ a.wf-card:hover {
   .wf-home-intro-heading { margin-bottom: 20px; }
   .wf-home-events-band,
   .wf-home-stories-band { padding: 62px 18px; }
-  .wf-home-subscribe { padding: 52px 18px; }
+  .wf-home-subscribe {
+    padding: 52px 18px;
+    background-size: 460px auto;
+  }
   .wf-home-subscribe-inner { align-items: flex-start; flex-direction: column; gap: 28px; }
   .wf-home-subscribe-btn { width: 100%; justify-content: center; box-sizing: border-box; }
   .wf-newsletter-hero { padding: 64px 18px 70px; }
