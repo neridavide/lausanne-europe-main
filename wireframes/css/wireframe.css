@@ -1,6 +1,6 @@
 /* Lausanne Europe prototype. Brand direction from lausanne.org */
 
-@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Libre+Baskerville:ital@0;1&family=Source+Sans+3:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@600;700;800&family=Libre+Baskerville:ital@0;1&family=Noto+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap");
 
 :root {
   --brand-teal: #007b78;
@@ -21,7 +21,7 @@
   --brand-max: 1240px;
   --brand-gap: 32px;
   --font-body: "Source Sans 3", system-ui, sans-serif;
-  --font-heading: "Barlow Condensed", system-ui, sans-serif;
+  --font-heading: "Exo", "Noto Sans", sans-serif;
   --font-serif: "Libre Baskerville", Georgia, serif;
 }
 
@@ -1215,7 +1215,7 @@ a.wf-card:hover {
 .wf-newsletter-hero {
   min-height: 760px;
   box-sizing: border-box;
-  padding: 54px 24px;
+  padding: 76px 24px;
   color: #fff;
   background:
     linear-gradient(0deg, rgba(2, 20, 34, .94) 0%, rgba(4, 55, 78, .63) 48%, rgba(5, 98, 108, .3) 100%),
@@ -1224,10 +1224,10 @@ a.wf-card:hover {
 
 .wf-newsletter-hero-inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(540px, 746px);
+  grid-template-columns: minmax(0, 1fr) minmax(540px, 720px);
   align-items: end;
-  gap: 70px;
-  max-width: 1590px;
+  gap: 80px;
+  max-width: 1540px;
   min-height: 652px;
   margin: 0 auto;
 }
@@ -1248,7 +1248,7 @@ a.wf-card:hover {
   margin: 0 0 26px;
   color: #fff;
   font-family: var(--font-heading);
-  font-size: clamp(4.25rem, 7.1vw, 6.5rem);
+  font-size: clamp(4rem, 6.5vw, 6rem);
   font-weight: 800;
   letter-spacing: -.045em;
   line-height: .9;
@@ -1283,7 +1283,7 @@ a.wf-card:hover {
   margin: 0 0 12px;
   color: #241f20;
   font-family: var(--font-heading);
-  font-size: clamp(2.1rem, 3vw, 2.75rem);
+  font-size: clamp(2rem, 2.6vw, 2.5rem);
   letter-spacing: -.025em;
   line-height: .98;
 }
@@ -1673,6 +1673,16 @@ a.wf-card:hover {
   cursor: pointer;
   transition: fill .16s ease, stroke .16s ease, filter .16s ease;
 }
+
+.wf-map-world {
+  fill: rgba(203, 224, 224, .35);
+  stroke: rgba(2, 54, 77, .36);
+  stroke-width: .75;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
+.wf-map-europe-focus { filter: drop-shadow(0 2px 3px rgba(0, 28, 45, .28)); }
 
 .wf-map-country-active { fill: #37c2b1; }
 .wf-map-country-emerging { fill: #75bfe3; }

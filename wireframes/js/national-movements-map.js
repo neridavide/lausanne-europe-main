@@ -1,4 +1,4 @@
-import { geoMercator, geoPath } from 'd3-geo';
+import { geoNaturalEarth1, geoPath } from 'd3-geo';
 import { feature } from 'topojson-client';
 import countriesTopology from 'world-atlas/countries-110m.json';
 
@@ -29,20 +29,35 @@ if (mapNode) {
   const height = 580;
   const collection = feature(countriesTopology, countriesTopology.objects.countries);
   const europeanCountries = collection.features.filter(({ id }) => records.has(String(id).padStart(3, '0')));
-  const projection = geoMercator().fitExtent([[48, 28], [width - 48, height - 26]], {
+  const projection = geoNaturalEarth1().fitExtent([[28, 28], [width - 28, height - 28]], {
     type: 'FeatureCollection',
-    features: europeanCountries
+    features: collection.features
   });
   const path = geoPath(projection);
   const namespace = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(namespace, 'svg');
   const tooltip = document.createElement('div');
+  const europeGroup = document.createElementNS(namespace, 'g');
+  const [[x0, y0], [x1, y1]] = path.bounds({ type: 'FeatureCollection', features: europeanCountries });
+  const europeScale = 1.75;
+  const europeCenterX = (x0 + x1) / 2;
+  const europeCenterY = (y0 + y1) / 2;
 
   svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
   svg.setAttribute('role', 'img');
   svg.setAttribute('aria-label', 'Map of European countries. Select a country to open its national movement profile.');
   tooltip.className = 'wf-map-tooltip';
   tooltip.hidden = true;
+  europeGroup.setAttribute('class', 'wf-map-europe-focus');
+  europeGroup.setAttribute('transform', `translate(${europeCenterX * (1 - europeScale)} ${europeCenterY * (1 - europeScale)}) scale(${europeScale})`);
+
+  collection.features.forEach((country) => {
+    const land = document.createElementNS(namespace, 'path');
+    land.setAttribute('d', path(country));
+    land.setAttribute('class', 'wf-map-world');
+    land.setAttribute('aria-hidden', 'true');
+    svg.append(land);
+  });
 
   europeanCountries.forEach((country) => {
     const id = String(country.id).padStart(3, '0');
@@ -79,8 +94,9 @@ if (mapNode) {
     });
     link.addEventListener('blur', () => { tooltip.hidden = true; });
     link.addEventListener('click', () => { window.location.assign(href); });
-    svg.append(link);
+    europeGroup.append(link);
   });
 
+  svg.append(europeGroup);
   mapNode.append(svg, tooltip);
 }
