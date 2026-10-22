@@ -11,7 +11,7 @@ const htmlInputs = Object.fromEntries(
 
 export default defineConfig({
   root: 'wireframes',
-  base: process.env.GITHUB_PAGES === 'true' ? '/lausanne-europe/' : '/',
+  base: process.env.GITHUB_PAGES === 'true' ? '/lausanne-europe-main/' : '/',
   build: {
     outDir: '../dist',
     emptyOutDir: true,
