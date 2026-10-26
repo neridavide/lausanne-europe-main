@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/wireframe.css">
   <link rel="icon" type="image/png" href="assets/lausanne-europe-favicon.png">
   <script type="module" src="/js/placeholder-state.js"></script>
+  <script type="module" src="/js/conversation-resources.js"></script>
 </head>
 <body>
   <div class="wf-banner">Prototype. <a href="index.html">All pages</a></div>
@@ -28,57 +29,36 @@
   <main class="wf-main wf-page-conversation">
     <nav class="wf-breadcrumb"><a href="homepage.html">Home</a> / Conversation</nav>
     <h1 class="wf-page-title">Conversation</h1>
-    <p class="wf-page-intro wf-copy">[Intro: stories, papers, podcasts; theology of mission with a European lens]</p>
+    <p class="wf-page-intro wf-copy">Explore Lausanne Global resources that help the church in Europe think, listen, and act together—through stories, podcasts, papers, and articles on mission in today&rsquo;s Europe.</p>
 
-    <div class="wf-tabs">
-      <span class="wf-tab active">[All]</span>
-      <span class="wf-tab">[Stories]</span>
-      <span class="wf-tab">[Podcasts]</span>
-      <span class="wf-tab">[Papers]</span>
+    <div class="wf-tabs" role="tablist" aria-label="Resource type">
+      <button class="wf-tab active" type="button" role="tab" aria-selected="true" data-resource-category="All">All</button>
+      <button class="wf-tab" type="button" role="tab" aria-selected="false" data-resource-category="Stories">Stories</button>
+      <button class="wf-tab" type="button" role="tab" aria-selected="false" data-resource-category="Podcasts">Podcasts</button>
+      <button class="wf-tab" type="button" role="tab" aria-selected="false" data-resource-category="Papers">Papers</button>
+      <button class="wf-tab" type="button" role="tab" aria-selected="false" data-resource-category="Articles">Articles</button>
     </div>
 
-    <div class="wf-filter-bar">
-      <select><option>[Filter: topic]</option></select>
-      <input type="search" placeholder="[Search content]">
+    <div class="wf-filter-bar wf-resource-filters">
+      <label class="wf-sr-only" for="resource-topic">Filter resources by topic</label>
+      <select id="resource-topic" data-resource-topic>
+        <option value="All">All topics</option>
+        <option value="Europe &amp; Mission">Europe &amp; Mission</option>
+        <option value="Church &amp; Community">Church &amp; Community</option>
+        <option value="Diaspora &amp; Migration">Diaspora &amp; Migration</option>
+        <option value="Digital Life">Digital Life</option>
+        <option value="Faith &amp; Culture">Faith &amp; Culture</option>
+        <option value="Justice &amp; Creation Care">Justice &amp; Creation Care</option>
+        <option value="Leadership">Leadership</option>
+      </select>
+      <label class="wf-sr-only" for="resource-search">Search resources</label>
+      <input id="resource-search" type="search" data-resource-search placeholder="Search resources" autocomplete="off">
     </div>
 
-    <div class="wf-card" style="margin-bottom:36px;flex-direction:row;min-height:auto">
-      <div class="wf-card-img" style="width:40%;min-height:220px">Featured image</div>
-      <div class="wf-card-body" style="padding:28px">
-        <span class="wf-tag">[Content type]</span>
-        <h2 class="wf-copy" style="margin:8px 0 12px">[Featured piece title]</h2>
-        <p class="wf-copy">[Excerpt: 2–3 sentences]</p>
-        <a href="story-article.html" class="wf-btn wf-btn-primary" style="margin-top:16px">[Read / listen / download]</a>
-      </div>
-    </div>
+    <section class="wf-resource-feature" aria-labelledby="featured-resource-heading" data-resource-feature></section>
 
-    <h2 class="wf-section-heading">Latest</h2>
-    <div class="wf-grid wf-grid-3">
-      <div class="wf-card">
-        <div class="wf-card-img">Thumbnail</div>
-        <div class="wf-card-body"><span class="wf-tag">[Type]</span><h3 class="wf-copy">[Title]</h3><p class="wf-copy">[Meta]</p></div>
-      </div>
-      <div class="wf-card">
-        <div class="wf-card-img">Thumbnail</div>
-        <div class="wf-card-body"><span class="wf-tag">[Type]</span><h3 class="wf-copy">[Title]</h3><p class="wf-copy">[Meta]</p></div>
-      </div>
-      <div class="wf-card">
-        <div class="wf-card-img">Thumbnail</div>
-        <div class="wf-card-body"><span class="wf-tag">[Type]</span><h3 class="wf-copy">[Title]</h3><p class="wf-copy">[Meta]</p></div>
-      </div>
-      <div class="wf-card">
-        <div class="wf-card-img">Thumbnail</div>
-        <div class="wf-card-body"><span class="wf-tag">[Type]</span><h3 class="wf-copy">[Title]</h3><p class="wf-copy">[Meta]</p></div>
-      </div>
-      <div class="wf-card">
-        <div class="wf-card-img">Thumbnail</div>
-        <div class="wf-card-body"><span class="wf-tag">[Type]</span><h3 class="wf-copy">[Title]</h3><p class="wf-copy">[Meta]</p></div>
-      </div>
-      <div class="wf-card">
-        <div class="wf-card-img">Thumbnail</div>
-        <div class="wf-card-body"><span class="wf-tag">[Type]</span><h3 class="wf-copy">[Title]</h3><p class="wf-copy">[Meta]</p></div>
-      </div>
-    </div>
+    <div class="wf-resource-list-heading"><h2 class="wf-section-heading">Latest resources</h2><p data-resource-count aria-live="polite"></p></div>
+    <div class="wf-grid wf-grid-3 wf-resource-grid" data-resource-grid></div>
   </main>
 </body>
 </html>
