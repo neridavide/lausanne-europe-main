@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/wireframe.css">
   <link rel="icon" type="image/png" href="assets/lausanne-europe-favicon.png">
   <script type="module" src="/js/placeholder-state.js"></script>
+  <script type="module" src="/js/issue-networks-directory.js"></script>
 </head>
 <body>
   <div class="wf-banner">Prototype. <a href="index.html">All pages</a></div>
@@ -55,17 +56,11 @@
       </div>
     </div>
 
-    <h2 class="wf-section-heading" id="issue-networks">Connect to an Issue Network of interest to you</h2>
-    <div class="wf-grid wf-grid-4 wf-network-grid">
-      <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">Church Planting</h3></div></div>
-      <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">Creation Care</h3></div></div>
-      <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">Diasporas</h3></div></div>
-      <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">Integral Mission</h3></div></div>
-      <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">International Student Ministry</h3></div></div>
-      <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">Leadership Development</h3></div></div>
-      <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">Proclamation Evangelism</h3></div></div>
-      <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">Workplace Ministry</h3></div></div>
-    </div>
+    <section class="wf-issue-directory" aria-labelledby="issue-networks">
+      <h2 class="wf-section-heading" id="issue-networks">Connect to an Issue Network of interest to you</h2>
+      <p class="wf-copy">Explore Lausanne&rsquo;s global Issue Networks. European activity and Europe-based catalysts will be added as they are confirmed.</p>
+      <div class="wf-issue-list" data-issue-networks aria-live="polite"></div>
+    </section>
 
     <h2 class="wf-section-heading">More ways to engage</h2>
     <div class="wf-grid wf-grid-2">
