@@ -2189,9 +2189,9 @@ img.wf-home-article-media {
   border-top: 6px solid var(--brand-coral);
 }
 
-.wf-page-leader-area { max-width: 880px; }
+.wf-page-coordinator-area { max-width: 880px; }
 
-.wf-page-leader-area .wf-login-box {
+.wf-page-coordinator-area .wf-login-box {
   border-top: 6px solid var(--brand-teal-light);
   box-shadow: 0 16px 44px rgba(9,59,78,.12);
 }
