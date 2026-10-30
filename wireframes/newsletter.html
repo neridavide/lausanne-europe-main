@@ -9,17 +9,16 @@
   <script type="module" src="/js/placeholder-state.js"></script>
 </head>
 <body>
-  <div class="wf-banner">Prototype. <a href="index.html">All pages</a></div>
   <header class="wf-header">
     <div class="wf-header-inner">
       <a href="homepage.html" class="wf-logo"><span class="wf-logo-mark"></span>Lausanne Europe</a>
       <nav class="wf-nav">
         <a href="national-movements.html">National Movements</a>
         <a href="gatherings.html">Gatherings</a>
-        <a href="conversation.html">Conversation</a>
+        <a href="conversation.html">Resources</a>
         <a href="get-involved.html">Get Involved</a>
         <a href="about.html">About</a>
-        <a href="donate.html">Donate</a>
+        <a href="contact.html" class="wf-utility">Contact</a>
         <a href="coordinator-area.html" class="wf-utility">Login</a>
       </nav>
     </div>
@@ -33,22 +32,21 @@
           <h1 id="newsletter-title">Stay <span>connected.</span></h1>
           <p>The Great Commission is a global story, and you&rsquo;re part of it.</p>
         </div>
-        <form class="wf-newsletter-form">
+        <form class="wf-newsletter-form" action="https://lausanneeurope.us2.list-manage.com/subscribe/post?u=09ac5444344b2a40e0346086b&amp;id=5c4b2728b0&amp;v_id=4607&amp;f_id=004996e3f0" method="post" target="_blank">
           <p class="wf-newsletter-form-kicker">Your starting point</p>
           <h2>Get Lausanne Europe updates</h2>
           <p class="wf-newsletter-form-lede">Stories, resources, and ways to engage with the church across Europe, in one regular email.</p>
-          <div class="wf-form-field"><label for="newsletter-first-name">First name</label><input class="wf-input" id="newsletter-first-name" type="text" placeholder="Your first name"></div>
-          <div class="wf-form-field"><label for="newsletter-last-name">Last name <span>&middot; optional</span></label><input class="wf-input" id="newsletter-last-name" type="text" placeholder="Your last name"></div>
-          <div class="wf-form-field"><label for="newsletter-email">Email address</label><input class="wf-input" id="newsletter-email" type="email" placeholder="you@example.com"></div>
-          <div class="wf-newsletter-captcha" role="presentation" aria-label="CAPTCHA placeholder">
-            <span class="wf-newsletter-captcha-box" aria-hidden="true"></span>
-            <span>I&rsquo;m not a robot</span>
-            <span class="wf-newsletter-captcha-mark" aria-hidden="true">↻<small>reCAPTCHA</small></span>
-          </div>
-          <p class="wf-newsletter-selected">Selected emails: Lausanne Europe updates</p>
-          <a class="wf-newsletter-choices" href="#email-choices">Review your email choices</a>
-          <button type="button" class="wf-btn wf-btn-primary wf-newsletter-submit">Subscribe to receive updates <span aria-hidden="true">&rsaquo;</span></button>
-          <p class="wf-newsletter-privacy">After subscribing, you can choose additional Lausanne Europe emails and personalise what you receive. By continuing, you agree to our <a href="legal.html">privacy policy</a>.</p>
+          <div class="wf-form-field"><label for="newsletter-first-name">First name</label><input class="wf-input" id="newsletter-first-name" name="FNAME" type="text" autocomplete="given-name" placeholder="Your first name" required></div>
+          <div class="wf-form-field"><label for="newsletter-last-name">Last name</label><input class="wf-input" id="newsletter-last-name" name="LNAME" type="text" autocomplete="family-name" placeholder="Your last name" required></div>
+          <div class="wf-form-field"><label for="newsletter-email">Email address</label><input class="wf-input" id="newsletter-email" name="EMAIL" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+          <fieldset class="wf-newsletter-consent">
+            <legend>Marketing permissions</legend>
+            <label for="newsletter-consent"><input id="newsletter-consent" name="gdpr[17620]" type="checkbox" value="Y" required> Yes, I consent to receive communications from the Lausanne Movement and Lausanne Europe.</label>
+            <p>We will not sell your data. You can unsubscribe at any time using the link at the bottom of our emails.</p>
+          </fieldset>
+          <div class="wf-newsletter-honeypot" aria-hidden="true"><input type="text" name="b_09ac5444344b2a40e0346086b_5c4b2728b0" tabindex="-1" autocomplete="off" value=""></div>
+          <button type="submit" name="subscribe" class="wf-btn wf-btn-primary wf-newsletter-submit">Subscribe to receive updates <span aria-hidden="true">&rsaquo;</span></button>
+          <p class="wf-newsletter-privacy">We use Mailchimp to send our emails. When you subscribe, your details are transferred to Mailchimp, which processes them in the United States. Read our <a href="legal.html#privacy">privacy policy</a> and <a href="https://www.intuit.com/privacy/statement/" target="_blank" rel="noopener noreferrer">Mailchimp&rsquo;s privacy statement</a>.</p>
         </form>
       </div>
     </section>
@@ -58,10 +56,13 @@
     <div class="wf-footer-inner">
       <div><div class="wf-logo"><span class="wf-logo-mark"></span>Lausanne Europe</div><p class="wf-copy" style="margin:0;font-size:14px;color:rgba(255,255,255,0.65)">Connecting leaders across Europe to collaborate in God&rsquo;s mission.</p></div>
       <div><h4>Engage</h4><ul><li><a href="national-movements.html">National Movements</a></li><li><a href="gatherings.html">Gatherings</a></li><li><a href="get-involved.html">Get Involved</a></li><li><a href="newsletter.html">Stay connected</a></li></ul></div>
-      <div><h4>Resources</h4><ul><li><a href="conversation.html">Conversation</a></li></ul></div>
-      <div><h4>About</h4><ul><li><a href="about.html">Who we are</a></li><li><a href="contact.html">Contact</a></li><li><a href="donate.html">Donate</a></li><li><a href="legal.html">Privacy</a></li></ul></div>
+      <div><h4>Resources</h4><ul><li><a href="conversation.html">All resources</a></li></ul></div>
+      <div><h4>About</h4><ul><li><a href="about.html">Who we are</a></li><li><a href="contact.html">Contact</a></li><li><a href="legal.html">Privacy</a></li></ul></div>
     </div>
-    <div class="wf-footer-bottom"><span>© Lausanne Europe</span><span><a href="legal.html">Privacy | Cookies</a></span></div>
+    <div class="wf-footer-bottom">
+      <div class="wf-footer-bottom-meta"><span>© Lausanne Europe</span><span><a href="legal.html">Privacy | Cookies</a></span></div>
+      <a href="donate.html" class="wf-footer-donate">Donate</a>
+    </div>
   </footer>
 </body>
 </html>

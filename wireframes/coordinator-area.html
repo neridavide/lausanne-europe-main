@@ -7,19 +7,19 @@
   <link rel="stylesheet" href="css/wireframe.css">
   <link rel="icon" type="image/png" href="assets/lausanne-europe-favicon.png">
   <script type="module" src="/js/placeholder-state.js"></script>
+  <script type="module" src="/js/coordinator-login.js"></script>
 </head>
 <body>
-  <div class="wf-banner">Prototype. <a href="index.html">All pages</a></div>
   <header class="wf-header">
     <div class="wf-header-inner">
       <a href="homepage.html" class="wf-logo"><span class="wf-logo-mark"></span>Lausanne Europe</a>
       <nav class="wf-nav">
         <a href="national-movements.html">National Movements</a>
         <a href="gatherings.html">Gatherings</a>
-        <a href="conversation.html">Conversation</a>
+        <a href="conversation.html">Resources</a>
         <a href="get-involved.html">Get Involved</a>
         <a href="about.html">About</a>
-        <a href="donate.html">Donate</a>
+        <a href="contact.html" class="wf-utility">Contact</a>
         <a href="coordinator-area.html" class="wf-utility active">Login</a>
       </nav>
     </div>
@@ -30,52 +30,27 @@
 
     <div class="wf-login-box">
       <h1 class="wf-page-title" style="font-size:1.5rem;text-align:center">Coordinator area</h1>
-      <p class="wf-copy" style="text-align:center;font-size:14px;margin-bottom:28px">[Short line on who can access this]</p>
-      <div class="wf-form-field"><label>[Email label]</label><div class="wf-input">[Field placeholder]</div></div>
-      <div class="wf-form-field"><label>[Password label]</label><div class="wf-input">[Field placeholder]</div></div>
-      <a href="#dashboard" class="wf-btn wf-btn-primary" style="display:block;text-align:center;width:100%">[Log in]</a>
-      <p style="text-align:center;font-size:13px;margin-top:20px"><a href="#">[Request access]</a> | <a href="#">[Update profile via JotForm]</a></p>
-    </div>
-
-    <hr class="wf-prototype-divider">
-
-    <div id="dashboard">
-      <span class="wf-label">Logged-in view (shown below for prototype review)</span>
-      <h2 class="wf-section-heading" style="margin-top:12px">Coordinator dashboard</h2>
-
-      <div class="wf-tabs">
-        <span class="wf-tab active">[Address book]</span>
-        <span class="wf-tab">[Internal resources]</span>
-        <span class="wf-tab">[My profile]</span>
-      </div>
-
-      <div class="wf-filter-bar">
-        <select><option>[Country]</option></select>
-        <select><option>[Role]</option></select>
-        <input type="search" placeholder="[Search coordinators]">
-        <a href="#" class="wf-btn wf-btn-outline">[Add / update via JotForm]</a>
-      </div>
-
-      <div class="wf-block">
-        <div class="wf-list-item">
-          <div class="wf-avatar"></div>
-          <div style="flex:1"><strong class="wf-copy">[Name]</strong> | <span class="wf-copy">[Country | role]</span><br><span class="wf-copy" style="font-size:13px">[Email | last updated]</span></div>
-          <a href="#" class="wf-btn wf-btn-outline">[View]</a>
+      <p class="wf-copy" style="text-align:center;font-size:14px;margin-bottom:28px">Sign in to preview the coordinator dashboard.</p>
+      <p class="wf-dev-note">Development access: use <strong>coordinator</strong> / <strong>1234</strong>.</p>
+      <form class="wf-login-form" data-coordinator-login novalidate>
+        <div class="wf-form-field">
+          <label for="coordinator-username">Username</label>
+          <input class="wf-input" id="coordinator-username" name="username" type="text" value="coordinator" autocomplete="username" required>
         </div>
-        <div class="wf-list-item">
-          <div class="wf-avatar"></div>
-          <div style="flex:1"><strong class="wf-copy">[Name]</strong> | <span class="wf-copy">[Country | role]</span><br><span class="wf-copy" style="font-size:13px">[Email]</span></div>
-          <a href="#" class="wf-btn wf-btn-outline">[View]</a>
+        <div class="wf-form-field">
+          <label for="coordinator-password">Password</label>
+          <input class="wf-input" id="coordinator-password" name="password" type="password" value="1234" autocomplete="current-password" required>
         </div>
-      </div>
-
-      <h2 class="wf-section-heading">Internal resources</h2>
-      <div class="wf-grid wf-grid-3">
-        <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">[Resource title]</h3><p class="wf-copy">[File type | access note]</p></div></div>
-        <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">[Resource title]</h3><p class="wf-copy">[File type | access note]</p></div></div>
-        <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">[Resource title]</h3><p class="wf-copy">[File type | access note]</p></div></div>
-      </div>
+        <p class="wf-login-error" data-login-error role="alert" hidden>Use the development username and password shown above.</p>
+        <button class="wf-btn wf-btn-primary" type="submit">Log in</button>
+      </form>
     </div>
   </main>
+  <footer class="wf-footer wf-footer-compact">
+    <div class="wf-footer-bottom">
+      <div class="wf-footer-bottom-meta"><span>© Lausanne Europe</span><span><a href="legal.html">Privacy</a></span></div>
+      <a href="donate.html" class="wf-footer-donate">Donate</a>
+    </div>
+  </footer>
 </body>
 </html>

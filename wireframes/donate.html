@@ -3,78 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Support Lausanne Europe as we connect leaders across the continent for gospel mission.">
   <title>Donate | Lausanne Europe</title>
   <link rel="stylesheet" href="css/wireframe.css">
   <link rel="icon" type="image/png" href="assets/lausanne-europe-favicon.png">
   <script type="module" src="/js/placeholder-state.js"></script>
 </head>
 <body>
-  <div class="wf-banner">Prototype. <a href="index.html">All pages</a></div>
   <header class="wf-header">
     <div class="wf-header-inner">
-      <a href="homepage.html" class="wf-logo"><span class="wf-logo-mark"></span>Lausanne Europe</a>
-      <nav class="wf-nav">
+      <a href="homepage.html" class="wf-logo" aria-label="Lausanne Europe home"><span class="wf-logo-mark"></span>Lausanne Europe</a>
+      <nav class="wf-nav" aria-label="Main navigation">
         <a href="national-movements.html">National Movements</a>
         <a href="gatherings.html">Gatherings</a>
-        <a href="conversation.html">Conversation</a>
+        <a href="conversation.html">Resources</a>
         <a href="get-involved.html">Get Involved</a>
         <a href="about.html">About</a>
-        <a href="donate.html" class="active">Donate</a>
+        <a href="contact.html" class="wf-utility">Contact</a>
         <a href="coordinator-area.html" class="wf-utility">Login</a>
       </nav>
     </div>
   </header>
 
-  <main class="wf-main wf-page-utility wf-page-donate">
+  <main class="wf-main wf-donate-simple">
     <nav class="wf-breadcrumb"><a href="homepage.html">Home</a> / Donate</nav>
-    <h1 class="wf-page-title">Partner with Lausanne Europe</h1>
-    <p class="wf-page-intro wf-copy">[Intro: why give; one-time and recurring options]</p>
 
-    <div class="wf-sidebar-layout">
-      <div>
-        <div class="wf-block">
-          <div class="wf-block-title">Where your gift goes</div>
-          <div class="wf-block-body">
-            <div class="wf-list-item"><strong class="wf-copy">[Fund area 1]</strong> | <span class="wf-copy">[One-line description]</span></div>
-            <div class="wf-list-item"><strong class="wf-copy">[Fund area 2: gatherings]</strong> | <span class="wf-copy">[Description]</span></div>
-            <div class="wf-list-item"><strong class="wf-copy">[Fund area 3: national movements]</strong> | <span class="wf-copy">[Description]</span></div>
-            <div class="wf-list-item"><strong class="wf-copy">[Fund area 4: resources]</strong> | <span class="wf-copy">[Description]</span></div>
-          </div>
-        </div>
+    <section class="wf-donate-simple-header" aria-labelledby="donate-title">
+      <p class="wf-label">Partner with Lausanne Europe</p>
+      <h1 class="wf-page-title" id="donate-title">Give to Lausanne Europe</h1>
+      <p class="wf-page-intro">Your generosity helps connect leaders across Europe to collaborate in God&rsquo;s mission.</p>
+    </section>
 
-        <div class="wf-block">
-          <div class="wf-block-title">Partner organisations</div>
-          <div class="wf-block-body">
-            <p class="wf-copy">[How giving relates to EEA and global Lausanne: if relevant here]</p>
-            <div class="wf-grid wf-grid-2" style="margin-top:20px">
-              <div class="wf-placeholder" style="min-height:72px">EEA logo</div>
-              <div class="wf-placeholder" style="min-height:72px">Lausanne global logo</div>
-            </div>
-          </div>
+    <section class="wf-campaign-panel" aria-label="Current campaign" data-campaign-panel hidden></section>
+
+    <div class="wf-donate-simple-layout">
+      <div class="wf-donate-simple-copy">
+        <h2>Thank you for partnering with us.</h2>
+        <p>Lausanne Europe brings leaders together across nations, generations, denominations, and spheres of ministry. Your gift helps strengthen those connections and supports our shared vision for mission in Europe.</p>
+        <div class="wf-donate-simple-note">
+          <span aria-hidden="true">✦</span>
+          <p>Lausanne&rsquo;s vision is to see the gospel for every person, disciple-making churches for every people and place, Christlike leaders for every church and sector, and kingdom impact in every sphere of society.</p>
         </div>
+        <p class="wf-donate-simple-contact">Questions about giving? <a href="contact.html">Get in touch</a>.</p>
       </div>
 
-      <aside>
-        <div class="wf-block">
-          <div class="wf-block-title">Donate now</div>
-          <div class="wf-block-body">
-            <div class="wf-tabs" style="margin-bottom:20px">
-              <span class="wf-tab active">[One-time]</span>
-              <span class="wf-tab">[Monthly]</span>
-            </div>
-            <div class="wf-grid wf-grid-2" style="gap:10px;margin-bottom:20px">
-              <div class="wf-btn wf-btn-outline" style="text-align:center">[€ amount]</div>
-              <div class="wf-btn wf-btn-outline" style="text-align:center">[€ amount]</div>
-              <div class="wf-btn wf-btn-primary" style="text-align:center">[€ amount]</div>
-              <div class="wf-btn wf-btn-outline" style="text-align:center">[Other]</div>
-            </div>
-            <div class="wf-form-field"><label>[Custom amount label]</label><div class="wf-input">[Amount field]</div></div>
-            <a href="#" class="wf-btn wf-btn-primary" style="display:block;text-align:center;width:100%">[Continue to payment]</a>
-            <p class="wf-copy" style="font-size:12px;margin-top:14px">[Payment provider note | GDPR compliance line]</p>
+      <section class="wf-donate-form-card" id="donation-form" aria-labelledby="donation-form-title">
+        <div class="wf-donate-form-heading">
+          <div>
+            <p class="wf-label">Secure giving</p>
+            <h2 id="donation-form-title">Make a gift</h2>
           </div>
+          <span class="wf-donate-secure"><span aria-hidden="true">⌁</span> Powered by Stripe</span>
         </div>
-      </aside>
+        <p class="wf-donate-form-intro">Use our secure donation form to choose the gift that is right for you.</p>
+        <div class="wf-donate-action">
+          <a class="wf-btn wf-btn-primary" href="https://buy.stripe.com/bJe4gAckA7vE9cvfaL0co01" target="_blank" rel="noopener noreferrer">Open secure donation form <span aria-hidden="true">↗</span></a>
+          <p>Your donation is processed securely by Stripe.</p>
+        </div>
+      </section>
     </div>
   </main>
+
+  <footer class="wf-footer"></footer>
 </body>
 </html>

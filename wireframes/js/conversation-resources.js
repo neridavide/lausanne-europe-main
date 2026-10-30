@@ -1,4 +1,46 @@
+import { legacyResources } from './legacy-resources.js';
+
 const resources = [
+  {
+    category: 'Articles',
+    publisher: 'Vista',
+    date: '2026-09-30',
+    title: 'Vista 49: Listening to the Church in Ukraine: Voices from a Country at War',
+    description: 'A new Vista issue centring voices from Ukrainian churches as they continue their witness through the fifth year of war.',
+    topics: ['Europe & Mission', 'Church & Community'],
+    url: 'https://vistajournal.online/news-and-events/vista-49',
+    image: 'https://images.squarespace-cdn.com/content/v1/5e3426c42a9bf131f7073b78/1790777652568-DSW6809GL7529N1WCONZ/ukraine+at+war.jpg'
+  },
+  {
+    category: 'Articles',
+    publisher: 'Vista',
+    date: '2025-12-11',
+    title: 'Vista 48: Indigenous Mission in Europe part 2',
+    description: 'A follow-up issue continuing the conversation around what indigenous mission can mean across Europe.',
+    topics: ['Europe & Mission', 'Faith & Culture'],
+    url: 'https://vistajournal.online/news-and-events/vista-48-indigenous-mission-in-europe-part-2',
+    image: 'https://images.squarespace-cdn.com/content/v1/5e3426c42a9bf131f7073b78/1765487921810-EOF30I06TIWFCHLD5UDT/vitalii-onyshchuk-v-KniMi5Nmk-unsplash.jpg'
+  },
+  {
+    category: 'Articles',
+    publisher: 'Vista',
+    date: '2025-06-29',
+    title: 'Indigenous Mission in Europe',
+    description: 'The first of a two-part Vista exploration asking how the gospel may speak afresh among Europe’s indigenous peoples.',
+    topics: ['Europe & Mission', 'Faith & Culture'],
+    url: 'https://vistajournal.online/news-and-events/indigenous-mission-in-europe',
+    image: 'https://images.squarespace-cdn.com/content/v1/5e3426c42a9bf131f7073b78/1751231637591-1K0PQ9F460XFLRQMVYYZ/juhi-sewchurran-3b09LEwrsp4-unsplash.jpg'
+  },
+  {
+    category: 'Articles',
+    publisher: 'Vista',
+    date: '2024-12-15',
+    title: 'Vista 46: Perspectives on the Fourth Lausanne Congress',
+    description: 'A collection of reflections from varied European contexts on the fourth Lausanne Congress and mission today.',
+    topics: ['Europe & Mission', 'Leadership'],
+    url: 'https://vistajournal.online/news-and-events/vista-46-perspectives-on-the-fourth-lausanne-conference',
+    image: 'https://images.squarespace-cdn.com/content/v1/5e3426c42a9bf131f7073b78/1734373366126-3ONBASHW6WCLUL5RXHMP/54014678359_39d9156020_k.jpg'
+  },
   {
     category: 'Articles',
     date: '2026-10-23',
@@ -115,7 +157,8 @@ const resources = [
     topics: ['Europe & Mission', 'Diaspora & Migration'],
     url: 'https://lausanne.org/about/blog/the-extraordinary-re-evangelization-of-europe',
     image: 'https://lausanne.org/wp-content/uploads/2021/09/reevangelization-europe-400x400-1.jpg'
-  }
+  },
+  ...legacyResources
 ];
 
 const state = { category: 'All', topic: 'All', query: '' };
@@ -128,15 +171,25 @@ const tabs = [...document.querySelectorAll('[data-resource-category]')];
 
 const formatDate = (date) => new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(`${date}T12:00:00`));
 const escapeHTML = (value) => value.replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[character]);
-const resourceText = (resource) => [resource.title, resource.description, resource.category, ...resource.topics].join(' ').toLocaleLowerCase();
+const resourceText = (resource) => [resource.title, resource.description, resource.category, resource.publisher, ...resource.topics].filter(Boolean).join(' ').toLocaleLowerCase();
+const resourceMeta = (resource) => [
+  resource.publisher,
+  formatDate(resource.date),
+  resource.topics.join(' · ')
+].filter(Boolean).join(' · ');
+const resourceOrigin = (resource) => {
+  if (resource.internal) return resource.category === 'Podcasts' ? 'Listen to podcast' : 'Read article';
+  return resource.publisher ? `Open on ${resource.publisher}` : 'Open on Lausanne Global';
+};
+const externalLinkAttributes = (resource) => resource.internal ? '' : ' target="_blank" rel="noopener noreferrer"';
 
 const resourceCard = (resource) => `
-  <a class="wf-card wf-resource-card" href="${resource.url}" target="_blank" rel="noopener noreferrer">
+  <a class="wf-card wf-resource-card" href="${resource.url}"${externalLinkAttributes(resource)}>
     <img class="wf-card-img" src="${resource.image}" alt="" />
     <span class="wf-card-body">
       <span class="wf-tag">${escapeHTML(resource.category)}</span>
       <h3>${escapeHTML(resource.title)}</h3>
-      <p>${escapeHTML(formatDate(resource.date))} · ${escapeHTML(resource.topics.join(' · '))}</p>
+      <p>${escapeHTML(resourceMeta(resource))}</p>
     </span>
   </a>`;
 
@@ -146,10 +199,10 @@ const featuredResource = (resource) => `
     <img src="${resource.image}" alt="" />
     <div>
       <span class="wf-tag">${escapeHTML(resource.category)}</span>
-      <p class="wf-resource-date">${escapeHTML(formatDate(resource.date))} · ${escapeHTML(resource.topics.join(' · '))}</p>
+      <p class="wf-resource-date">${escapeHTML(resourceMeta(resource))}</p>
       <h2 id="featured-resource-heading">${escapeHTML(resource.title)}</h2>
       <p>${escapeHTML(resource.description)}</p>
-      <a href="${resource.url}" target="_blank" rel="noopener noreferrer" class="wf-btn wf-btn-primary">Open on Lausanne Global <span aria-hidden="true">↗</span></a>
+      <a href="${resource.url}"${externalLinkAttributes(resource)} class="wf-btn wf-btn-primary">${escapeHTML(resourceOrigin(resource))} <span aria-hidden="true">${resource.internal ? '→' : '↗'}</span></a>
     </div>
   </article>`;
 

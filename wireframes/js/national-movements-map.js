@@ -1,10 +1,7 @@
 import { geoNaturalEarth1, geoPath } from 'd3-geo';
 import { feature } from 'topojson-client';
 import countriesTopology from 'world-atlas/countries-110m.json';
-
-const countryRecords = [
-  ['008', 'Albania', 'emerging'], ['020', 'Andorra', 'none'], ['040', 'Austria', 'none'], ['056', 'Belgium', 'emerging'], ['070', 'Bosnia and Herzegovina', 'emerging'], ['100', 'Bulgaria', 'emerging'], ['191', 'Croatia', 'emerging'], ['196', 'Cyprus', 'emerging'], ['203', 'Czechia', 'emerging'], ['208', 'Denmark', 'active'], ['233', 'Estonia', 'emerging'], ['246', 'Finland', 'emerging'], ['250', 'France', 'active'], ['276', 'Germany', 'active'], ['300', 'Greece', 'emerging'], ['348', 'Hungary', 'emerging'], ['352', 'Iceland', 'emerging'], ['372', 'Ireland', 'active'], ['380', 'Italy', 'active'], ['383', 'Kosovo', 'none'], ['428', 'Latvia', 'emerging'], ['438', 'Liechtenstein', 'none'], ['440', 'Lithuania', 'emerging'], ['442', 'Luxembourg', 'none'], ['470', 'Malta', 'emerging'], ['492', 'Monaco', 'none'], ['499', 'Montenegro', 'none'], ['807', 'North Macedonia', 'none'], ['528', 'Netherlands', 'active'], ['578', 'Norway', 'active'], ['616', 'Poland', 'none'], ['620', 'Portugal', 'active'], ['642', 'Romania', 'emerging'], ['674', 'San Marino', 'none'], ['688', 'Serbia', 'emerging'], ['703', 'Slovakia', 'active'], ['705', 'Slovenia', 'emerging'], ['724', 'Spain', 'active'], ['752', 'Sweden', 'emerging'], ['756', 'Switzerland', 'active'], ['792', 'Turkey', 'none'], ['804', 'Ukraine', 'emerging'], ['826', 'United Kingdom', 'emerging']
-];
+import { countryRecords, countryFlagCodes, flagEmoji, statusLabel } from './national-movements-data.js';
 
 // countries-110m omits Kosovo, so include its boundary explicitly rather than
 // leaving it as part of the non-interactive background map.
@@ -20,17 +17,50 @@ const kosovoFeature = {
   }
 };
 
+// The source atlas represents Crimea within Russia. For this map, include the
+// peninsula in Ukraine so its colour, label, and profile consistently reflect
+// Ukraine's internationally recognised borders.
+const crimeaCoordinates = [[
+  [33.435, 45.972], [33.698, 46.219], [34.411, 46.004], [34.731, 45.965],
+  [34.861, 45.767], [35.012, 45.737], [35.019, 45.651], [35.509, 45.41],
+  [36.531, 45.469], [36.333, 45.114], [35.239, 44.94], [33.882, 44.361],
+  [33.327, 44.566], [33.547, 45.034], [32.453, 45.327], [32.633, 45.519],
+  [33.587, 45.852], [33.435, 45.972]
+]];
+
 const records = new Map(countryRecords.map(([id, name, status]) => [id, { name, status }]));
 const mapNode = document.querySelector('[data-national-movement-map]');
-const statusLabel = (status) => ({ active: 'Active movement', emerging: 'Emerging movement', none: 'No movement' }[status]);
 
 if (mapNode) {
   const width = 1000;
   const height = 580;
   const namespace = 'http://www.w3.org/2000/svg';
   const collection = feature(countriesTopology, countriesTopology.objects.countries);
+  const ukraine = collection.features.find(({ id }) => String(id).padStart(3, '0') === '804');
+  const ukraineOuterRing = ukraine.geometry.coordinates[0];
+  const crimeaOuterRing = crimeaCoordinates[0];
+  const samePoint = ([longitude, latitude], [targetLongitude, targetLatitude]) => (
+    Math.abs(longitude - targetLongitude) < .001 && Math.abs(latitude - targetLatitude) < .001
+  );
+  const crimeaSeamStart = ukraineOuterRing.findIndex((point) => samePoint(point, crimeaOuterRing[5]));
+  const crimeaSeamEnd = ukraineOuterRing.findIndex((point) => samePoint(point, crimeaOuterRing[0]));
+  const ukraineWithCrimea = {
+    ...ukraine,
+    geometry: {
+      // Merge the two outlines so the shared Crimea–Ukraine seam is not
+      // rendered as a border within Ukraine.
+      type: 'Polygon',
+      coordinates: [[
+        ...ukraineOuterRing.slice(0, crimeaSeamStart + 1),
+        ...crimeaOuterRing.slice(6),
+        ...ukraineOuterRing.slice(crimeaSeamEnd + 1)
+      ]]
+    }
+  };
   const europeanCountries = [
-    ...collection.features.filter(({ id }) => records.has(String(id).padStart(3, '0'))),
+    ...collection.features
+      .filter(({ id }) => records.has(String(id).padStart(3, '0')))
+      .map((country) => (String(country.id).padStart(3, '0') === '804' ? ukraineWithCrimea : country)),
     kosovoFeature
   ];
   const projection = geoNaturalEarth1().fitExtent([[28, 28], [width - 28, height - 28]], { type: 'FeatureCollection', features: collection.features });
@@ -156,14 +186,8 @@ const directorySearch = document.querySelector('[data-directory-search]');
 const directoryStatus = document.querySelector('[data-directory-status]');
 
 if (directoryNode) {
-  const abbreviation = (name) => name
-    .split(/[\s-]+/)
-    .map((part) => part[0])
-    .join('')
-    .slice(0, 2)
-    .toUpperCase();
   const directory = countryRecords
-    .map(([, name, status]) => ({ name, status }))
+    .map(([id, name, status]) => ({ name, status, flag: flagEmoji(countryFlagCodes.get(id)) }))
     .sort((a, b) => a.name.localeCompare(b.name));
 
   const renderDirectory = () => {
@@ -174,10 +198,10 @@ if (directoryNode) {
       && (!selectedStatus || status === selectedStatus)
     ));
 
-    directoryNode.innerHTML = matchingCountries.map(({ name, status }) => {
+    directoryNode.innerHTML = matchingCountries.map(({ name, status, flag }) => {
       const href = `country-profile.html?${new URLSearchParams({ country: name, status })}`;
       return `<a class="wf-country-row" href="${href}" aria-label="View ${name}: ${statusLabel(status)}">
-        <span class="wf-country-mark" aria-hidden="true">${abbreviation(name)}</span>
+        <span class="wf-country-mark" aria-hidden="true">${flag}</span>
         <span class="wf-country-row-copy">
           <strong>${name}</strong>
           <span class="wf-country-status wf-country-status-${status}"><i></i>${statusLabel(status)}</span>

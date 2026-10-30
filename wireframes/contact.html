@@ -7,64 +7,143 @@
   <link rel="stylesheet" href="css/wireframe.css">
   <link rel="icon" type="image/png" href="assets/lausanne-europe-favicon.png">
   <script type="module" src="/js/placeholder-state.js"></script>
+  <script type="module" src="/js/contact-form.js"></script>
 </head>
 <body>
-  <div class="wf-banner">Prototype. <a href="index.html">All pages</a></div>
   <header class="wf-header">
     <div class="wf-header-inner">
       <a href="homepage.html" class="wf-logo"><span class="wf-logo-mark"></span>Lausanne Europe</a>
       <nav class="wf-nav">
         <a href="national-movements.html">National Movements</a>
         <a href="gatherings.html">Gatherings</a>
-        <a href="conversation.html">Conversation</a>
+        <a href="conversation.html">Resources</a>
         <a href="get-involved.html">Get Involved</a>
         <a href="about.html">About</a>
-        <a href="donate.html">Donate</a>
+        <a href="contact.html" class="wf-utility active">Contact</a>
         <a href="coordinator-area.html" class="wf-utility">Login</a>
       </nav>
     </div>
   </header>
 
-  <main class="wf-main wf-page-utility">
+  <main class="wf-main wf-page-utility wf-page-contact">
     <nav class="wf-breadcrumb"><a href="homepage.html">Home</a> / Contact</nav>
-    <h1 class="wf-page-title">Contact</h1>
-    <p class="wf-page-intro wf-copy">[Intro: how to reach the team; three enquiry types below]</p>
+    <h1 class="wf-page-title">Get in touch</h1>
+    <p class="wf-page-intro">Send a message to the Lausanne Europe team, to YLG Europe, or straight to the Lausanne movement in your country. If you are not sure who to ask, write to us and we will pass it on.</p>
 
-    <div class="wf-grid wf-grid-3" style="margin-bottom:36px">
-      <div class="wf-block">
-        <div class="wf-block-title">General</div>
-        <div class="wf-block-body">
-          <p class="wf-copy">[What kinds of questions go here]</p>
-        </div>
-      </div>
-      <div class="wf-block">
-        <div class="wf-block-title">Press</div>
-        <div class="wf-block-body">
-          <p class="wf-copy">[Media enquiries: any assets or spokesperson info?]</p>
-        </div>
-      </div>
-      <div class="wf-block">
-        <div class="wf-block-title">Speaking</div>
-        <div class="wf-block-body">
-          <p class="wf-copy">[Speaking enquiries: brief names Jim and Usha as contacts]</p>
-          <a href="#contact-form" class="wf-btn wf-btn-outline" style="margin-top:12px">[Send enquiry]</a>
-        </div>
-      </div>
+    <div class="wf-contact-routes" role="list">
+      <article class="wf-contact-route wf-contact-route-default" role="listitem">
+        <span class="wf-tag">Default</span>
+        <h2>Lausanne Europe</h2>
+        <p>General questions, press and media, speaking requests, partnerships, gatherings, or help starting a movement where there isn&rsquo;t one yet.</p>
+        <button type="button" class="wf-contact-route-link" data-contact-pick="lausanne-europe">Write to Lausanne Europe <span aria-hidden="true">›</span></button>
+      </article>
+      <article class="wf-contact-route" role="listitem">
+        <span class="wf-tag">Younger leaders</span>
+        <h2>YLG Europe</h2>
+        <p>The Younger Leaders Generation network across Europe: for younger leaders and for those mentoring and investing in them.</p>
+        <button type="button" class="wf-contact-route-link" data-contact-pick="ylg-europe">Write to YLG Europe <span aria-hidden="true">›</span></button>
+      </article>
+      <article class="wf-contact-route" role="listitem">
+        <span class="wf-tag">By country</span>
+        <h2>National movements</h2>
+        <p>Reach the coordinator of one of the <strong data-movement-count>active and emerging</strong> national Lausanne movements directly.</p>
+        <button type="button" class="wf-contact-route-link" data-contact-pick="national">Choose your country <span aria-hidden="true">›</span></button>
+      </article>
     </div>
 
-    <div class="wf-block" id="contact-form">
-      <div class="wf-block-title">Contact form</div>
-      <div class="wf-block-body">
-        <div class="wf-grid wf-grid-2">
-          <div class="wf-form-field"><label>[Name]</label><div class="wf-input">[Field placeholder]</div></div>
-          <div class="wf-form-field"><label>[Email]</label><div class="wf-input">[Field placeholder]</div></div>
-          <div class="wf-form-field"><label>[Enquiry type]</label><div class="wf-input">[General / Press / Speaking]</div></div>
-          <div class="wf-form-field"><label>[Country]</label><div class="wf-input">[Field placeholder]</div></div>
+    <div class="wf-sidebar-layout wf-contact-layout">
+      <section class="wf-block" id="contact-form" aria-labelledby="contact-form-title">
+        <div class="wf-block-title" id="contact-form-title">Send a message</div>
+        <div class="wf-block-body">
+          <form class="wf-contact-form" data-contact-form novalidate>
+            <div class="wf-form-field">
+              <label for="contact-recipient">Who would you like to contact?</label>
+              <select class="wf-input" id="contact-recipient" name="recipient" data-contact-recipient required>
+                <option value="lausanne-europe" selected>Lausanne Europe</option>
+                <option value="ylg-europe">YLG Europe (Younger Leaders Generation)</option>
+                <optgroup label="National movements" data-contact-movements></optgroup>
+              </select>
+              <p class="wf-contact-hint">Don&rsquo;t see your country? Write to Lausanne Europe and choose &ldquo;Starting a national movement&rdquo;.</p>
+            </div>
+
+            <div class="wf-form-field" data-contact-topic-field>
+              <label for="contact-topic">What is it about?</label>
+              <select class="wf-input" id="contact-topic" name="topic" data-contact-topic>
+                <option value="general">General question</option>
+                <option value="press">Press and media</option>
+                <option value="speaking">Speaking request</option>
+                <option value="partnership">Partnership</option>
+                <option value="gatherings">Gatherings and events</option>
+                <option value="movement">Starting a national movement</option>
+              </select>
+            </div>
+
+            <div class="wf-grid wf-grid-2 wf-contact-pair">
+              <div class="wf-form-field">
+                <label for="contact-name">Your name</label>
+                <input class="wf-input" id="contact-name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="wf-form-field">
+                <label for="contact-email">Email address</label>
+                <input class="wf-input" id="contact-email" name="email" type="email" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="wf-form-field">
+              <label for="contact-country">Where are you based? <span class="wf-contact-optional">Optional</span></label>
+              <select class="wf-input" id="contact-country" name="country" data-contact-country>
+                <option value="">Select a country</option>
+              </select>
+            </div>
+
+            <div class="wf-form-field">
+              <label for="contact-message">Message</label>
+              <textarea class="wf-input" id="contact-message" name="message" rows="7" required></textarea>
+            </div>
+
+            <label class="wf-contact-consent">
+              <input type="checkbox" name="consent" required>
+              <span>I agree that <strong data-contact-recipient-name>Lausanne Europe</strong> may use my details to reply to this message, as described in the <a href="legal.html">privacy notice</a>.</span>
+            </label>
+
+            <div class="wf-newsletter-honeypot" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+
+            <p class="wf-login-error" data-contact-error role="alert" hidden></p>
+            <button type="submit" class="wf-btn wf-btn-primary wf-contact-submit">Send message</button>
+          </form>
+
+          <div class="wf-contact-sent" data-contact-sent hidden tabindex="-1">
+            <h2>Message sent</h2>
+            <p>Thank you. Your message is on its way to <strong data-contact-sent-to>Lausanne Europe</strong>. We have sent a copy to <strong data-contact-sent-email>your inbox</strong>.</p>
+            <button type="button" class="wf-btn wf-btn-outline" data-contact-reset>Send another message</button>
+          </div>
         </div>
-        <div class="wf-form-field"><label>[Message]</label><div class="wf-input" style="min-height:120px">[Field placeholder]</div></div>
-        <a href="#" class="wf-btn wf-btn-primary">[Send message]</a>
-      </div>
+      </section>
+
+      <aside>
+        <div class="wf-block wf-contact-recipient" aria-live="polite">
+          <div class="wf-block-title">Your message goes to</div>
+          <div class="wf-block-body" data-contact-summary></div>
+        </div>
+        <div class="wf-block">
+          <div class="wf-block-title">Other ways to connect</div>
+          <div class="wf-block-body wf-contact-links">
+            <a href="national-movements.html">Find a national movement</a>
+            <a href="newsletter.html">Subscribe to the newsletter</a>
+            <a href="gatherings.html">See upcoming gatherings</a>
+            <a href="mailto:privacy@lausanne.org">Privacy enquiries</a>
+          </div>
+        </div>
+      </aside>
     </div>
+
+    <p class="wf-dev-note"><strong>Prototype note:</strong> nothing is sent from this page. In production the form posts a recipient key (<code>lausanne-europe</code>, <code>ylg-europe</code>, or <code>nm-FR</code> and so on) and the server looks up the inbox, so no addresses appear in the page source. A movement without a coordinator inbox falls back to Lausanne Europe. Links can preselect a recipient with <code>?to=</code> and a topic with <code>?topic=</code>.</p>
   </main>
+  <footer class="wf-footer wf-footer-compact">
+    <div class="wf-footer-bottom">
+      <div class="wf-footer-bottom-meta"><span>© Lausanne Europe</span><span><a href="legal.html">Privacy</a></span></div>
+      <a href="donate.html" class="wf-footer-donate">Donate</a>
+    </div>
+  </footer>
 </body>
 </html>

@@ -7,19 +7,19 @@
   <link rel="stylesheet" href="css/wireframe.css">
   <link rel="icon" type="image/png" href="assets/lausanne-europe-favicon.png">
   <script type="module" src="/js/placeholder-state.js"></script>
+  <script type="module" src="/js/gatherings-filters.js"></script>
 </head>
 <body>
-  <div class="wf-banner">Prototype. <a href="index.html">All pages</a></div>
   <header class="wf-header">
     <div class="wf-header-inner">
       <a href="homepage.html" class="wf-logo"><span class="wf-logo-mark"></span>Lausanne Europe</a>
       <nav class="wf-nav">
         <a href="national-movements.html">National Movements</a>
         <a href="gatherings.html" class="active">Gatherings</a>
-        <a href="conversation.html">Conversation</a>
+        <a href="conversation.html">Resources</a>
         <a href="get-involved.html">Get Involved</a>
         <a href="about.html">About</a>
-        <a href="donate.html">Donate</a>
+        <a href="contact.html" class="wf-utility">Contact</a>
         <a href="coordinator-area.html" class="wf-utility">Login</a>
       </nav>
     </div>
@@ -30,33 +30,69 @@
     <h1 class="wf-page-title">Gatherings</h1>
     <p class="wf-page-intro wf-copy">Join leaders across Europe for prayer, learning, and gatherings that strengthen connections for mission.</p>
 
-    <div class="wf-tabs">
-      <span class="wf-tab active">All events</span>
-      <span class="wf-tab">National Movements</span>
-      <span class="wf-tab">YLG Europe</span>
+    <div class="wf-tabs" role="tablist" aria-label="Filter gatherings">
+      <button type="button" class="wf-tab active" role="tab" aria-selected="true" data-gathering-filter="all">All events</button>
+      <button type="button" class="wf-tab" role="tab" aria-selected="false" data-gathering-filter="lausanne-europe">Lausanne Europe</button>
+      <button type="button" class="wf-tab" role="tab" aria-selected="false" data-gathering-filter="national-movements">National Movements</button>
+      <button type="button" class="wf-tab" role="tab" aria-selected="false" data-gathering-filter="ylg">YLG</button>
     </div>
+    <p class="wf-visually-hidden" aria-live="polite" data-gathering-filter-status>Showing all events.</p>
 
-    <div class="wf-card" style="margin-bottom:28px;flex-direction:row;min-height:auto">
-      <div class="wf-card-img" style="width:320px;height:auto;min-height:200px;flex-shrink:0">Featured event image</div>
+    <div class="wf-card wf-gatherings-featured-card" data-gathering-item data-gathering-category="ylg" style="margin-bottom:28px;flex-direction:row;min-height:auto">
+      <div class="wf-card-img wf-ylg-card-image" style="width:320px;height:auto;min-height:200px;flex-shrink:0" role="img" aria-label="Royal G Max Hotel and Spa on the Albanian coast"></div>
       <div class="wf-card-body" style="padding:28px">
-        <span class="wf-tag">26&ndash;29 November 2026</span>
-        <h2 class="wf-copy" style="margin:8px 0">YLGen Europe Annual Gathering</h2>
-        <p class="wf-copy">Golem, Albania</p>
-        <p style="margin-top:20px"><a href="event-detail.html" class="wf-btn wf-btn-primary">View event</a></p>
+        <span class="wf-tag">YLG</span><span class="wf-tag">26&ndash;29 November 2026</span>
+        <h2 class="wf-copy" style="margin:8px 0">YLG Europe 2026 Gathering</h2>
+        <p class="wf-copy">Durr&euml;s, Albania</p>
+        <p class="wf-copy">For younger leaders across Europe to connect, receive teaching, share encouragement, and strategise together.</p>
+        <p style="margin-top:20px"><a href="gatherings/ylg-europe-2026.html" class="wf-btn wf-btn-primary">View gathering</a></p>
       </div>
     </div>
 
     <div class="wf-grid wf-grid-2">
-      <div class="wf-card">
-        <div class="wf-card-img">Event image</div>
+      <article class="wf-card" data-gathering-item data-gathering-category="ylg">
+        <div class="wf-card-img">Global gathering</div>
         <div class="wf-card-body">
-          <span class="wf-tag">15&ndash;22 March 2027</span>
+          <span class="wf-tag">YLG</span><span class="wf-tag">15&ndash;22 March 2027</span>
           <h3 class="wf-copy">YLG4 Congress</h3>
-          <p class="wf-copy">Sao Paolo, Brazil</p>
-          <p style="margin-top:16px"><a href="event-detail.html" class="wf-btn wf-btn-outline">View event</a></p>
+          <p class="wf-copy">S&atilde;o Paulo State, Brazil</p>
+          <p style="margin-top:16px"><a href="https://lausanne.org/gathering/ylg-4" target="_blank" rel="noopener noreferrer" class="wf-btn wf-btn-outline">Visit global site <span aria-hidden="true">↗</span></a></p>
         </div>
-      </div>
+      </article>
+      <article class="wf-card" data-gathering-item data-gathering-category="lausanne-europe">
+        <div class="wf-card-img">Lausanne Europe</div>
+        <div class="wf-card-body">
+          <span class="wf-tag">Lausanne Europe</span><span class="wf-tag">25&ndash;28 November 2027</span>
+          <h3 class="wf-copy">Lausanne Europe 2027</h3>
+          <p class="wf-copy">Europe</p>
+          <p style="margin-top:16px"><a href="gatherings/le27.html" class="wf-btn wf-btn-outline">View gathering</a></p>
+        </div>
+      </article>
+      <article class="wf-card" data-gathering-item data-gathering-category="national-movements">
+        <div class="wf-card-img">National movement</div>
+        <div class="wf-card-body">
+          <span class="wf-tag">National Movement</span><span class="wf-tag">28&ndash;30 May 2027</span>
+          <h3 class="wf-copy">Lausanne Italy</h3>
+          <p class="wf-copy">Rome, Italy</p>
+          <p style="margin-top:16px"><a href="country-profile.html?country=Italy&amp;status=active" class="wf-btn wf-btn-outline">View national movement</a></p>
+        </div>
+      </article>
+      <article class="wf-card" data-gathering-item data-gathering-category="national-movements">
+        <div class="wf-card-img">National movement</div>
+        <div class="wf-card-body">
+          <span class="wf-tag">National Movement</span><span class="wf-tag">23 January 2027</span>
+          <h3 class="wf-copy">Lausanne Hungary</h3>
+          <p class="wf-copy">Budapest, Hungary</p>
+          <p style="margin-top:16px"><a href="country-profile.html?country=Hungary&amp;status=emerging" class="wf-btn wf-btn-outline">View national movement</a></p>
+        </div>
+      </article>
     </div>
   </main>
+  <footer class="wf-footer wf-footer-compact">
+    <div class="wf-footer-bottom">
+      <div class="wf-footer-bottom-meta"><span>© Lausanne Europe</span><span><a href="legal.html">Privacy</a></span></div>
+      <a href="donate.html" class="wf-footer-donate">Donate</a>
+    </div>
+  </footer>
 </body>
 </html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordinator dashboard | Lausanne Europe</title>
+  <link rel="stylesheet" href="css/wireframe.css">
+  <link rel="icon" type="image/png" href="assets/lausanne-europe-favicon.png">
+  <script type="module" src="/js/placeholder-state.js"></script>
+</head>
+<body>
+  <header class="wf-header">
+    <div class="wf-header-inner">
+      <a href="homepage.html" class="wf-logo"><span class="wf-logo-mark"></span>Lausanne Europe</a>
+      <nav class="wf-nav">
+        <a href="national-movements.html">National Movements</a>
+        <a href="gatherings.html">Gatherings</a>
+        <a href="conversation.html">Resources</a>
+        <a href="get-involved.html">Get Involved</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="wf-utility">Contact</a>
+        <a href="coordinator-dashboard.html" class="wf-utility active">Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wf-main wf-page-utility wf-page-coordinator-area">
+    <nav class="wf-breadcrumb"><a href="homepage.html">Home</a> / Coordinator dashboard</nav>
+    <span class="wf-label">Dashboard draft</span>
+    <h1 class="wf-page-title" style="font-size:1.8rem;margin-top:12px">Coordinator dashboard</h1>
+
+    <div class="wf-tabs" aria-label="Coordinator dashboard sections">
+      <button class="wf-tab active" type="button">[Address book]</button>
+      <button class="wf-tab" type="button">[Internal resources]</button>
+      <button class="wf-tab" type="button">[My profile]</button>
+    </div>
+
+    <div class="wf-filter-bar">
+      <select aria-label="Filter by country"><option>[Country]</option></select>
+      <select aria-label="Filter by role"><option>[Role]</option></select>
+      <input type="search" placeholder="[Search coordinators]" aria-label="Search coordinators">
+      <a href="#" class="wf-btn wf-btn-outline">[Add / update via JotForm]</a>
+    </div>
+
+    <div class="wf-block">
+      <div class="wf-list-item">
+        <div class="wf-avatar"></div>
+        <div style="flex:1"><strong class="wf-copy">[Name]</strong> | <span class="wf-copy">[Country | role]</span><br><span class="wf-copy" style="font-size:13px">[Email | last updated]</span></div>
+        <a href="#" class="wf-btn wf-btn-outline">[View]</a>
+      </div>
+      <div class="wf-list-item">
+        <div class="wf-avatar"></div>
+        <div style="flex:1"><strong class="wf-copy">[Name]</strong> | <span class="wf-copy">[Country | role]</span><br><span class="wf-copy" style="font-size:13px">[Email]</span></div>
+        <a href="#" class="wf-btn wf-btn-outline">[View]</a>
+      </div>
+    </div>
+
+    <h2 class="wf-section-heading">Internal resources</h2>
+    <div class="wf-grid wf-grid-3">
+      <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">[Resource title]</h3><p class="wf-copy">[File type | access note]</p></div></div>
+      <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">[Resource title]</h3><p class="wf-copy">[File type | access note]</p></div></div>
+      <div class="wf-card"><div class="wf-card-body"><h3 class="wf-copy">[Resource title]</h3><p class="wf-copy">[File type | access note]</p></div></div>
+    </div>
+  </main>
+  <footer class="wf-footer wf-footer-compact">
+    <div class="wf-footer-bottom">
+      <div class="wf-footer-bottom-meta"><span>© Lausanne Europe</span><span><a href="legal.html">Privacy</a></span></div>
+      <a href="donate.html" class="wf-footer-donate">Donate</a>
+    </div>
+  </footer>
+</body>
+</html>
