@@ -92,18 +92,6 @@ h1, h2, h3, h4, .wf-page-title, .wf-section-heading {
   gap: 26px;
 }
 
-/* Search placeholder for the wireframe shell. */
-.wf-header-inner::after {
-  content: "";
-  width: 17px;
-  height: 17px;
-  border: 2px solid var(--brand-navy);
-  border-radius: 50%;
-  flex: 0 0 auto;
-  position: relative;
-  box-shadow: 9px 9px 0 -7px var(--brand-navy);
-}
-
 .wf-logo {
   display: block;
   width: 246px;
