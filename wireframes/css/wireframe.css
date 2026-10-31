@@ -329,9 +329,9 @@ h1, h2, h3, h4, .wf-page-title, .wf-section-heading {
   flex-direction: column;
   justify-content: center;
   background:
-    radial-gradient(circle at 14% 18%, rgba(80, 201, 180, .44) 0 1.5%, transparent 1.7%) 0 0 / 54px 54px,
-    radial-gradient(circle at 80% 62%, rgba(255, 255, 255, .13) 0 1px, transparent 1.6px) 0 0 / 28px 28px,
-    linear-gradient(111deg, #07527e 0%, #067f88 52%, #134f63 100%);
+    linear-gradient(111deg, rgba(7, 82, 126, .72) 0%, rgba(6, 127, 136, .5) 52%, rgba(19, 79, 99, .72) 100%),
+    url("../assets/photos/hero-krakow-main-square.jpg") center 40% / cover,
+    #07527e;
   padding: 110px 24px 160px;
   position: relative;
   color: #fff;
@@ -573,9 +573,18 @@ a.wf-card:hover {
   opacity: 0.55;
 }
 
+.wf-ylg4-card-image,
+.wf-le27-card-image,
+.wf-rome-card-image,
+.wf-budapest-card-image { opacity: 1; }
+.wf-ylg4-card-image { background: url("../assets/photos/ylg4-key-visual.jpg") center 30% / cover; }
+.wf-le27-card-image { background: linear-gradient(135deg, rgba(4, 49, 75, .15), rgba(0, 105, 103, .2)), url("../assets/photos/lausanne-congress-worship.jpg") center 30% / cover; }
+.wf-rome-card-image { background: url("../assets/photos/gathering-rome.jpg") center / cover; }
+.wf-budapest-card-image { background: url("../assets/photos/gathering-budapest.jpg") center / cover; }
+
 .wf-ylg-card-image {
   opacity: 1;
-  background: linear-gradient(135deg, rgba(4, 49, 75, .2), rgba(0, 105, 103, .28)), url("https://www.lausanneeurope.org/wp-content/uploads/2024/02/max-royal-g-hotel-spa.jpg") center / cover;
+  background: url("../assets/photos/ylg-europe-thumb.jpg") center 60% / cover;
 }
 
 .wf-map,
@@ -1144,8 +1153,16 @@ a.wf-card:hover {
     linear-gradient(130deg, #0c4067 0 50%, #1769b0 50% 100%);
 }
 
+.wf-gathering-image.wf-ylg4-gathering-image {
+  background: url("../assets/photos/ylg4-key-visual.jpg") center 30% / cover;
+}
+
+.wf-gathering-image.wf-le27-gathering-image {
+  background: url("../assets/photos/lausanne-congress-worship.jpg") 60% 30% / cover;
+}
+
 .wf-gathering-image.wf-ylg-gathering-image {
-  background: linear-gradient(145deg, rgba(5, 47, 70, .22), rgba(0, 115, 107, .35)), url("https://www.lausanneeurope.org/wp-content/uploads/2024/02/max-royal-g-hotel-spa.jpg") center / cover;
+  background: url("../assets/photos/ylg-europe-thumb.jpg") center 60% / cover;
 }
 
 .wf-gathering-content { padding: 28px; }
@@ -2182,6 +2199,19 @@ img.wf-home-article-media {
 
 .wf-page-event .wf-sidebar-layout > :first-child .wf-block :is(h2, p, .wf-copy) { color: var(--brand-muted); }
 
+.wf-page-hero-figure { margin: 0 0 36px; }
+.wf-page-hero-figure .wf-page-hero-media { margin-bottom: 8px; }
+.wf-page-hero-figure figcaption { color: var(--brand-muted); font-size: 13px; }
+
+.wf-page-hero-media {
+  display: block;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 36px;
+  object-fit: cover;
+  border-radius: var(--brand-radius);
+}
+
 .wf-event-hero-media {
   display: block;
   width: 100%;
@@ -2191,6 +2221,8 @@ img.wf-home-article-media {
   object-fit: cover;
   border-radius: 14px 14px 0 0;
 }
+
+.wf-ylg-event-hero { object-position: 75% 60%; }
 
 .wf-event-eyebrow {
   margin: 0 0 10px;
