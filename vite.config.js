@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import { relative, resolve } from 'node:path'
-import { copyFileSync, readdirSync } from 'node:fs'
+import { copyFileSync, cpSync, readdirSync } from 'node:fs'
 
 const wireframesDir = resolve(__dirname, 'wireframes')
 const findHtmlFiles = (directory) => readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -30,6 +30,8 @@ export default defineConfig({
       name: 'homepage-at-root',
       closeBundle() {
         copyFileSync(resolve(__dirname, 'dist/homepage.html'), resolve(__dirname, 'dist/index.html'))
+        // Legacy resources reference these files from JS strings, so Rollup never sees them.
+        cpSync(resolve(wireframesDir, 'assets/legacy'), resolve(__dirname, 'dist/assets/legacy'), { recursive: true })
       },
     },
   ],

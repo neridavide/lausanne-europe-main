@@ -18,6 +18,21 @@ export const legacyResources = [
   {
     "category": "Articles",
     "publisher": "Lausanne Europe",
+    "date": "2021-08-28",
+    "title": "The Church in a Sexualised Culture",
+    "description": "There is probably no other area where Europe’s Evangelical Christians so often clash with the secular humanistic culture as the area of sexuality. On the one hand, this is certainly nothing new, as also the early church clashed with the Greco-Roman culture on this matter. On the other hand, this type of friction has become an increasingly troublesome phenomenon. Our view of sexuality in general, and LGBTQ issues in particular, has in many cases become the great stumbling block of the Christian message today. Furthermore, in relation to the state and authorities, it has become something of a litmus test determining whether you are considered “in” or “out”.",
+    "topics": [
+      "Europe & Mission",
+      "Church & Community",
+      "Faith & Culture"
+    ],
+    "url": "story-article.html?slug=the-church-in-a-sexualised-culture",
+    "image": "assets/legacy/the-church-in-a-sexualised-culture-hero.jpg",
+    "internal": true
+  },
+  {
+    "category": "Articles",
+    "publisher": "Lausanne Europe",
     "date": "2021-06-23",
     "title": "LECTIO DIVINA … VISIO DIVINA",
     "description": "This spiritual exercise connects the verbal with the visual. Beginning with Origen in the third century, Lectio Divina is an Early Church practice of scriptural reading, meditation and prayer intended to promote communion with God and to increase the knowledge of God’s word.",
@@ -70,6 +85,21 @@ export const legacyResources = [
     ],
     "url": "story-article.html?slug=understanding-and-discipling-youth",
     "image": "assets/legacy/understanding-and-discipling-youth-hero.jpg",
+    "internal": true
+  },
+  {
+    "category": "Articles",
+    "publisher": "Lausanne Europe",
+    "date": "2021-04-15",
+    "title": "The Legacy of John Stott through the Lausanne Movement",
+    "description": "John Stott was a colossus. As Jim Packer said on hearing news of his death in 2011, ‘He had no peer, and we should not look for a successor.’ As decades pass, history will further unfold the extent of his influence on theological thinking, on preaching, on the tensions between the gospel and culture, on the development of a Christian mind, on evangelical commitment to social justice, and supremely on world evangelization.",
+    "topics": [
+      "Europe & Mission",
+      "Justice & Creation Care",
+      "Faith & Culture"
+    ],
+    "url": "story-article.html?slug=the-legacy-of-john-stott-through-the-lausanne-movement",
+    "image": "assets/legacy/the-legacy-of-john-stott-through-the-lausanne-movement-hero.jpg",
     "internal": true
   },
   {
@@ -360,7 +390,7 @@ export const legacyResources = [
       "Faith & Culture"
     ],
     "url": "story-article.html?slug=lausanne-global-classroom-nominalism",
-    "image": "assets/lausanne-europe-logo.png",
+    "image": "assets/legacy/lausanne-global-classroom-nominalism-hero.jpg",
     "internal": true
   },
   {
@@ -635,7 +665,7 @@ export const legacyResources = [
       "Diaspora & Migration"
     ],
     "url": "story-article.html?slug=podcast-finding-christ-in-the-chaos-refugees-in-europe",
-    "image": "assets/lausanne-europe-logo.png",
+    "image": "assets/legacy/podcast-finding-christ-in-the-chaos-refugees-in-europe-hero.jpg",
     "internal": true
   },
   {
@@ -650,7 +680,7 @@ export const legacyResources = [
       "Church & Community"
     ],
     "url": "story-article.html?slug=church-planting-in-europe",
-    "image": "assets/lausanne-europe-logo.png",
+    "image": "assets/legacy/episode-1-the-conversation-hero.jpg",
     "internal": true
   },
   {
@@ -665,7 +695,7 @@ export const legacyResources = [
       "Church & Community"
     ],
     "url": "story-article.html?slug=march-2021-conversation-interview-with-jay-and",
-    "image": "assets/legacy/episode-2-decolonised-mission-hero.jpg",
+    "image": "assets/legacy/episode-1-the-conversation-hero.jpg",
     "internal": true
   },
   {
@@ -680,7 +710,7 @@ export const legacyResources = [
       "Church & Community"
     ],
     "url": "story-article.html?slug=december-conversation-interview-with-nay-dawson",
-    "image": "assets/legacy/episode-2-decolonised-mission-hero.jpg",
+    "image": "assets/legacy/episode-1-the-conversation-hero.jpg",
     "internal": true
   },
   {
@@ -693,7 +723,7 @@ export const legacyResources = [
       "Europe & Mission"
     ],
     "url": "story-article.html?slug=september-conversation",
-    "image": "assets/legacy/episode-2-decolonised-mission-hero.jpg",
+    "image": "assets/legacy/episode-1-the-conversation-hero.jpg",
     "internal": true
   },
   {
@@ -706,7 +736,7 @@ export const legacyResources = [
       "Europe & Mission"
     ],
     "url": "story-article.html?slug=episode-6-what-threatens-reconciliation-in-europe",
-    "image": "assets/legacy/episode-2-decolonised-mission-hero.jpg",
+    "image": "assets/legacy/episode-1-the-conversation-hero.jpg",
     "internal": true
   },
   {
@@ -720,7 +750,7 @@ export const legacyResources = [
       "Leadership"
     ],
     "url": "story-article.html?slug=may-conversation-podcast-mobilisation",
-    "image": "assets/legacy/episode-2-decolonised-mission-hero.jpg",
+    "image": "assets/legacy/episode-1-the-conversation-hero.jpg",
     "internal": true
   },
   {
@@ -734,7 +764,7 @@ export const legacyResources = [
       "Digital Life"
     ],
     "url": "story-article.html?slug=episode-5-how-the-coronavirus-is-impacting-christian-communication-in-the-media",
-    "image": "assets/legacy/episode-2-decolonised-mission-hero.jpg",
+    "image": "assets/legacy/episode-1-the-conversation-hero.jpg",
     "internal": true
   },
   {
@@ -748,7 +778,7 @@ export const legacyResources = [
       "Leadership"
     ],
     "url": "story-article.html?slug=april-conversation-podcast-mobilisation",
-    "image": "assets/legacy/episode-2-decolonised-mission-hero.jpg",
+    "image": "assets/legacy/episode-1-the-conversation-hero.jpg",
     "internal": true
   },
   {
@@ -763,7 +793,7 @@ export const legacyResources = [
       "Faith & Culture"
     ],
     "url": "story-article.html?slug=episode-4-nominalism",
-    "image": "assets/legacy/episode-2-decolonised-mission-hero.jpg",
+    "image": "assets/legacy/episode-1-the-conversation-hero.jpg",
     "internal": true
   },
   {
@@ -777,7 +807,7 @@ export const legacyResources = [
       "Faith & Culture"
     ],
     "url": "story-article.html?slug=episode-3-gods-of-europe",
-    "image": "assets/legacy/episode-2-decolonised-mission-hero.jpg",
+    "image": "assets/legacy/episode-1-the-conversation-hero.jpg",
     "internal": true
   },
   {
@@ -791,7 +821,20 @@ export const legacyResources = [
       "Diaspora & Migration"
     ],
     "url": "story-article.html?slug=episode-2-decolonised-mission",
-    "image": "assets/legacy/episode-2-decolonised-mission-hero.jpg",
+    "image": "assets/legacy/episode-1-the-conversation-hero.jpg",
+    "internal": true
+  },
+  {
+    "category": "Podcasts",
+    "publisher": "Lausanne Europe",
+    "date": "2020-03-07",
+    "title": "Episode 1: The Conversation",
+    "description": "In this podcast Kåre talks to missiologist Jim Memory has he explains the dynamics around an ambitious undertaking:  To get up to 10.000 Europeans to think about and discuss how to reach the new Europe with the dynamic gospel.  ",
+    "topics": [
+      "Europe & Mission"
+    ],
+    "url": "story-article.html?slug=episode-1-the-conversation",
+    "image": "assets/legacy/episode-1-the-conversation-hero.jpg",
     "internal": true
   }
 ];

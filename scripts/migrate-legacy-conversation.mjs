@@ -5,6 +5,11 @@ const source = 'https://www.lausanneeurope.org/wp-json/wp/v2';
 const output = new URL('../wireframes/', import.meta.url);
 const assetDirectory = new URL('assets/legacy/', output);
 const articleCategoryId = 75;
+// Linked from the legacy Conversation page, though filed outside the Articles category or the podcast feed.
+const conversationExtras = new Set(['the-church-in-a-sexualised-culture', 'the-legacy-of-john-stott-through-the-lausanne-movement', 'episode-1-the-conversation']);
+// Items without a featured image or podcast cover on the legacy site.
+const imageOverrides = { 'lausanne-global-classroom-nominalism': 'https://lausanne.org/wp-content/uploads/2024/03/table-discussion.jpg' };
+const userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36';
 
 const decodeHTML = (value = '') => value
   .replace(/&#8211;/g, '–')
@@ -28,7 +33,7 @@ const requestJSON = async (path) => {
 };
 
 const requestText = async (url) => {
-  const response = await fetch(url);
+  const response = await fetch(url, { headers: { 'User-Agent': userAgent } });
   if (!response.ok) throw new Error(`Could not read ${url}: ${response.status}`);
   return response.text();
 };
@@ -50,7 +55,7 @@ const fetchAsset = async (url, name, kind = 'image') => {
 
   let response;
   for (let attempt = 0; attempt < 5; attempt += 1) {
-    response = await fetch(url.replace('http://', 'https://'));
+    response = await fetch(url.replace('http://', 'https://'), { headers: { 'User-Agent': userAgent } });
     if (response.ok) break;
     if (response.status !== 429 || attempt === 4) throw new Error(`Could not download ${url}: ${response.status}`);
     await new Promise((resolve) => setTimeout(resolve, 1500 * (attempt + 1)));
@@ -58,6 +63,39 @@ const fetchAsset = async (url, name, kind = 'image') => {
   await writeFile(destination, Buffer.from(await response.arrayBuffer()));
   return `assets/legacy/${filename}`;
 };
+
+// Cornerstone pages render their body server-side, so the API only returns an empty #cs-content wrapper.
+const usesCornerstone = (content) => /<div id="cs-content" class="cs-content">\s*<\/div>/.test(content);
+
+const extractCornerstone = (html) => {
+  const start = html.indexOf('id="cs-content"');
+  if (start < 0) return '';
+  const open = html.indexOf('>', start) + 1;
+  let depth = 1;
+  for (const match of html.slice(open).matchAll(/<(\/?)div\b/gi)) {
+    depth += match[1] ? -1 : 1;
+    if (depth === 0) return html.slice(open, open + match.index);
+  }
+  return '';
+};
+
+const cornerstoneToHTML = (markup) => markup
+  .replace(/<style[\s\S]*?<\/style>/gi, '')
+  .replace(/<h1 class="x-text-content-text-primary">([\s\S]*?)<\/h1>/gi, (tag, text) => `<h2>${text.trim()}</h2>`)
+  .replace(/<div class="x-text x-content[^"]*">([\s\S]*?)<\/div>/gi, (block, text) => {
+    const parts = text.split(/(<(?:ol|ul)\b[\s\S]*?<\/(?:ol|ul)>)/i)
+      .flatMap((part) => (/^<(?:ol|ul)\b/i.test(part) ? [part] : part.split(/(?:\s*<br\s*\/?>\s*){2,}/i)))
+      .map((part) => part.trim().replace(/^(?:<br\s*\/?>\s*)+|(?:\s*<br\s*\/?>)+$/gi, ''))
+      .filter(Boolean);
+    return parts.map((part) => {
+      if (/^<(?:ol|ul)\b/i.test(part)) return part;
+      return /^Photo by\b/i.test(stripHTML(part)) ? `<figcaption>${part}</figcaption>` : `<p>${part}</p>`;
+    }).join('\n');
+  })
+  .replace(/<\/?(?:span|div)\b[^>]*>/gi, '')
+  // A headline straight after another one is a subtitle.
+  .replace(/(<\/h[23]>)\s*<h2>([\s\S]*?)<\/h2>/g, '$1\n<h3>$2</h3>')
+  .replace(/(<\/h3>)\s*<h2>([\s\S]*?)<\/h2>/g, '$1\n<h3>$2</h3>');
 
 const parseFeed = (xml) => [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((match) => {
   const item = match[1];
@@ -79,6 +117,9 @@ const topicsFor = ({ title, summary }) => {
   add('Faith & Culture', /culture|secular|sexual|idea|nominal|religion/);
   return [...new Set(topics)];
 };
+
+// Name inline assets after their source file so re-runs reuse the same local copy.
+const assetName = (slug, url) => `${slug}-${basename(new URL(url).pathname, extname(new URL(url).pathname)).toLocaleLowerCase()}`;
 
 const withLimitedConcurrency = async (items, limit, callback) => {
   const results = [];
@@ -131,8 +172,15 @@ const main = async () => {
     requestJSON('/users?per_page=100&context=embed')
   ]);
   const audioByTitle = new Map(parseFeed(feed).map((item) => [item.title, item]));
-  const actualArticles = articles.filter((item) => item.categories.includes(articleCategoryId));
-  const actualPodcasts = podcasts.filter((item) => audioByTitle.has(normalise(item.title.rendered)));
+  const actualArticles = articles.filter((item) => item.categories.includes(articleCategoryId) || conversationExtras.has(item.slug));
+  const actualPodcasts = podcasts.filter((item) => audioByTitle.has(normalise(item.title.rendered)) || (conversationExtras.has(item.slug) && item.meta?.audio_file));
+  for (const item of actualPodcasts) {
+    if (!audioByTitle.has(normalise(item.title.rendered))) audioByTitle.set(normalise(item.title.rendered), { enclosure: item.meta.audio_file, duration: item.meta.duration || null });
+  }
+  await withLimitedConcurrency([...actualArticles, ...actualPodcasts].filter((item) => usesCornerstone(item.content.rendered)), 2, async (item) => {
+    item.content.rendered = cornerstoneToHTML(extractCornerstone(await requestText(item.link)));
+    console.log(`Read Cornerstone body for ${item.slug}`);
+  });
   const items = [
     ...actualArticles.map((item) => ({ ...item, resourceType: 'Articles' })),
     ...actualPodcasts.map((item) => ({ ...item, resourceType: 'Podcasts' }))
@@ -140,22 +188,24 @@ const main = async () => {
   const internalSlugs = new Set(items.map((item) => item.slug));
   const imageMap = new Map();
   const assetJobs = [];
-  const authors = new Map(users.map((user) => [user.name, user]));
+  const authors = new Map(users.map((user) => [decodeHTML(user.name), user]));
   const usedAuthorNames = new Set(items.map((item) => decodeHTML(item._embedded?.author?.[0]?.name || 'Lausanne Europe')));
 
+  const heroFor = (item) => item._embedded?.['wp:featuredmedia']?.[0]?.source_url || item.meta?.cover_image || imageOverrides[item.slug] || null;
+
   for (const item of items) {
-    const hero = item._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+    const hero = heroFor(item);
     if (hero) assetJobs.push({ url: hero, name: `${item.slug}-hero`, kind: 'image' });
-    for (const match of item.content.rendered.matchAll(/<img[^>]+\bsrc=("|')([^"']+)\1/gi)) assetJobs.push({ url: match[2], name: `${item.slug}-${assetJobs.length + 1}`, kind: 'image' });
-    for (const match of item.content.rendered.matchAll(/href=("|')(https?:\/\/(?:www\.)?lausanneeurope\.org\/wp-content\/[^"']+)\1/gi)) assetJobs.push({ url: match[2], name: `${item.slug}-${assetJobs.length + 1}`, kind: 'document' });
+    for (const match of item.content.rendered.matchAll(/<img[^>]+\bsrc=("|')([^"']+)\1/gi)) assetJobs.push({ url: match[2], name: assetName(item.slug, match[2]), kind: 'image' });
+    for (const match of item.content.rendered.matchAll(/href=("|')(https?:\/\/(?:www\.)?lausanneeurope\.org\/wp-content\/[^"']+)\1/gi)) assetJobs.push({ url: match[2], name: assetName(item.slug, match[2]), kind: 'document' });
     if (item.resourceType === 'Podcasts') {
       const audio = audioByTitle.get(normalise(item.title.rendered));
       if (audio?.enclosure) assetJobs.push({ url: audio.enclosure, name: `${item.slug}-audio`, kind: 'audio' });
     }
   }
 
-  for (const author of authors.values()) {
-    if (!usedAuthorNames.has(author.name)) continue;
+  for (const [name, author] of authors) {
+    if (!usedAuthorNames.has(name)) continue;
     const avatar = author.simple_local_avatar?.['400'] || author.avatar_urls?.['96'];
     if (avatar) assetJobs.push({ url: avatar, name: `author-${author.slug}`, kind: 'image' });
   }
@@ -177,7 +227,7 @@ const main = async () => {
     const bodyBeforeCleanup = item.resourceType === 'Podcasts'
       ? item.content.rendered.replace(/<div id="podcast-subscribe-button[\s\S]*/i, '')
       : item.content.rendered;
-    const hero = item._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+    const hero = heroFor(item);
     const audio = item.resourceType === 'Podcasts' ? audioByTitle.get(normalise(item.title.rendered)) : null;
     const body = rewriteContent(bodyBeforeCleanup, internalSlugs, imageMap);
     const title = stripHTML(item.title.rendered);
