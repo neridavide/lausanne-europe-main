@@ -31,56 +31,67 @@
     <div class="wf-sidebar-layout">
       <div>
         <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px">
-          <div class="wf-placeholder" style="width:80px;height:54px;min-height:54px">Flag</div>
+          <div class="wf-placeholder" style="width:80px;height:54px;min-height:54px" data-country-flag>Flag</div>
           <div>
             <h1 class="wf-page-title wf-copy" style="margin:0" data-country-name>[Country name]</h1>
             <span class="wf-tag wf-copy" data-country-status>[Movement status]</span>
           </div>
         </div>
 
-        <div class="wf-block">
-          <div class="wf-block-title">About the movement</div>
-          <div class="wf-block-body">
-            <p class="wf-copy-block">[Paragraph: history, vision, current activity in this country]</p>
-            <p class="wf-copy-block">[Optional second paragraph]</p>
+        <div data-movement-content>
+          <div class="wf-block">
+            <div class="wf-block-title">About the movement</div>
+            <div class="wf-block-body" data-profile-about>
+              <p class="wf-copy-block">[Paragraph: history, vision, current activity in this country]</p>
+              <p class="wf-copy-block">[Optional second paragraph]</p>
+            </div>
           </div>
-        </div>
 
-        <div class="wf-block">
-          <div class="wf-block-title">Communications Coordinator</div>
-          <div class="wf-block-body">
-            <div style="display:flex;gap:16px;align-items:center">
-              <div class="wf-avatar"></div>
-              <div>
-                <strong class="wf-copy">[Coordinator name]</strong><br>
-                <span class="wf-copy" style="font-size:14px">[Role | country]</span>
+          <div class="wf-block">
+            <div class="wf-block-body">
+              <div style="display:flex;gap:16px;align-items:center">
+                <div class="wf-avatar" data-coordinator-photo></div>
+                <div>
+                  <strong class="wf-copy" data-profile-field="coordinator.name">[Coordinator name]</strong><br>
+                  <span class="wf-copy" style="font-size:14px" data-coordinator-role>[Communications Coordinator | Country]</span>
+                </div>
               </div>
             </div>
           </div>
+
+          <section data-profile-related hidden>
+            <h2 class="wf-section-heading">Related content</h2>
+            <div class="wf-grid wf-grid-2" data-profile-related-list></div>
+          </section>
         </div>
 
-        <h2 class="wf-section-heading">Related content</h2>
-        <div class="wf-grid wf-grid-2">
-          <div class="wf-card"><div class="wf-card-img">Image</div><div class="wf-card-body"><h3 class="wf-copy">[Related story title]</h3></div></div>
-          <div class="wf-card"><div class="wf-card-img">Image</div><div class="wf-card-body"><h3 class="wf-copy">[Related event title]</h3></div></div>
-        </div>
+        <section class="wf-country-invitation" aria-labelledby="country-invitation-heading" data-no-movement hidden>
+          <div class="wf-country-invitation-copy">
+            <p class="wf-eyebrow">Help grow the network</p>
+            <h2 id="country-invitation-heading">No movement in your country yet?</h2>
+            <p>And what if there is no national Lausanne movement in my country? We want to see every country in Europe connected into the global Lausanne conversation. If you would like to help make that possible, take a look at our <a href="get-involved.html">Get Involved</a> page, join our bi-monthly prayer Zoom, or contact us directly.</p>
+          </div>
+          <a class="wf-btn wf-btn-primary" href="contact.html?topic=movement">Get in touch <span aria-hidden="true">›</span></a>
+        </section>
       </div>
 
-      <aside>
+      <aside data-movement-content>
         <div class="wf-block">
           <div class="wf-block-title">Connect</div>
           <div class="wf-block-body">
-            <p class="wf-copy" style="font-size:14px;margin:0 0 16px">[Link to national movement website or social]</p>
-            <a href="#" class="wf-btn wf-btn-primary" style="display:block;text-align:center;margin-bottom:10px">[External link label]</a>
-            <a href="contact.html" class="wf-btn wf-btn-outline" style="display:block;text-align:center" data-contact-movement>Contact coordinator</a>
+            <p class="wf-copy" style="font-size:14px;margin:0 0 16px" data-profile-field="connect.text">[Link to national movement website or social]</p>
+            <div class="wf-btn-stack">
+              <a href="#" class="wf-btn wf-btn-primary" data-profile-field="connect.label" data-profile-link>[External link label]</a>
+              <a href="contact.html" class="wf-btn wf-btn-outline" data-contact-movement>Contact coordinator</a>
+            </div>
           </div>
         </div>
         <div class="wf-block">
           <div class="wf-block-title">At a glance</div>
           <div class="wf-block-body" style="font-size:14px">
-            <p><strong>Status:</strong> <span class="wf-copy">[Active / forming / etc.]</span></p>
-            <p><strong>Region:</strong> <span class="wf-copy">[Region name]</span></p>
-            <p><strong>Last updated:</strong> <span class="wf-copy">[Date]</span></p>
+            <p><strong>Status:</strong> <span class="wf-copy" data-country-status>[Active / forming / etc.]</span></p>
+            <p><strong>Region:</strong> <span class="wf-copy" data-profile-field="region">[Region name]</span></p>
+            <p><strong>Last updated:</strong> <span class="wf-copy" data-profile-field="updated">[Date]</span></p>
           </div>
         </div>
       </aside>

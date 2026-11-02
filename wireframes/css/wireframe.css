@@ -453,6 +453,10 @@ h1, h2, h3, h4, .wf-page-title, .wf-section-heading {
   margin-left: 10px;
 }
 
+/* Full-width buttons stacked vertically, e.g. in a sidebar. */
+.wf-btn-stack { display: grid; gap: 10px; }
+.wf-btn-stack .wf-btn { margin: 0; text-align: center; }
+
 .wf-grid {
   display: grid;
   gap: var(--brand-gap);
@@ -2716,6 +2720,24 @@ img.wf-home-article-media {
 .wf-page-profile .wf-sidebar-layout > :last-child .wf-block:first-child {
   border-top: 6px solid var(--brand-teal-light);
 }
+
+/* No movement: the invitation box replaces the profile panel and sidebar. */
+[data-no-movement][hidden] { display: none; }
+.wf-country-mark.wf-profile-flag { width: auto; height: auto; font-size: 64px; }
+.wf-card-img-photo { opacity: 1; background-position: center; background-size: cover; }
+img.wf-avatar { object-fit: cover; }
+
+/* Movement status, in the map legend colours. */
+.wf-status { display: inline-flex; align-items: center; gap: 7px; }
+.wf-status::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--status-dot); }
+.wf-status-active { --status-dot: #37c2b1; }
+.wf-status-emerging { --status-dot: #75bfe3; }
+.wf-status-none { --status-dot: #a9bcc1; }
+.wf-tag.wf-status-active { background: rgba(55, 194, 177, .16); color: #0b6a60; }
+.wf-tag.wf-status-emerging { background: rgba(117, 191, 227, .2); color: #1a5e85; }
+.wf-tag.wf-status-none { background: #e9eff0; color: #56666c; }
+.wf-profile-no-movement .wf-sidebar-layout { grid-template-columns: 1fr; }
+.wf-page-profile.wf-profile-no-movement .wf-sidebar-layout > :first-child { padding: 0; background: none; }
 
 .wf-page-utility {
   max-width: 980px;
