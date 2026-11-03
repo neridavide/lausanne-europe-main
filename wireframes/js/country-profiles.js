@@ -35,7 +35,6 @@ export const countryProfiles = {
     updated: 'November 2026',
   },
   Genovia: {
-    summary: 'Helping Genovia’s historic churches and new diaspora churches join together in mission.',
     about: [
       'Lausanne Genovia sprang into life after the Fourth Lausanne Congress in 2024, with a particular vision to help Genovia’s historic churches collaborate in mission with the new diaspora churches.',
       'The movement has been holding a series of regional Lausanne gatherings in cities around the country and has launched a podcast on whole-life discipleship. Its first Lausanne Genovia National Gathering is planned for June 2027.',
@@ -49,6 +48,39 @@ export const countryProfiles = {
     coordinator: { name: 'Elena Marchetti', title: 'Communications Coordinator' },
     connect: { text: 'Follow Lausanne Genovia for news, gatherings and the whole-life discipleship podcast.', label: 'Visit Lausanne Genovia', href: '#' },
     region: 'Southern Europe',
+    updated: 'November 2026',
+  },
+  Sweden: {
+    about: [
+      'Sweden’s Lausanne Committee was founded in 1976. In 2001, its work was taken forward by the Swedish Evangelical Alliance (SEA), which is connected to the World and European Evangelical Alliances and serves as Sweden’s formal link with Lausanne.',
+      'For the past few years, SEA General Secretary Olof Edsinger and Daniel Råsberg of the Evangelical Free Church (EFK) have coordinated Lausanne work in Sweden. Together, they have hosted seminars and conferences.',
+    ],
+    takePart: [
+      'Become a personal member of the Swedish Evangelical Alliance',
+      'Connect your organisation with the Swedish Evangelical Mission Alliance',
+      'Contact the Swedish Lausanne team directly',
+    ],
+    church: 'Sweden has been shaped by several centuries of Lutheran state-church tradition, alongside many free churches and revival movements, most of them evangelical and/or Pentecostal. While free churches have declined in recent decades, new congregations are also being planted, notably by missionaries from the Global South.',
+    language: { code: 'sv', label: 'Svenska' },
+    translation: {
+      about: [
+        '1976 bildades en svensk Lausannekommitté. År 2001 bildades i stället Svenska Evangeliska Alliansen (SEA), som en förlängning av Lausannekommittén och med anslutning till World och European Evangelical Alliance. SEA är i dag den formella kontaktlänken mellan Sverige och Lausanne, men kontakter finns också genom enskilda och organisationer som står Lausannerörelsen nära.',
+        'Sedan några år tillbaka fungerar SEA:s generalsekreterare Olof Edsinger och EFK:s Daniel Råsberg som samordnare för Lausannearbetet i Sverige. Tillsammans har de stått värdar för flera seminarier och konferenser.',
+      ],
+      takePart: [
+        'Bli personlig medlem i Svenska Evangeliska Alliansen',
+        'Anslut din organisation till Svenska Evangeliska Missionsalliansen',
+        'Maila olof.edsinger@sea.nu eller daniel.råsberg@efk.se för direktkontakt med det svenska Lausannearbetet',
+      ],
+      church: 'Sverige präglas av flera hundra år av luthersk statskyrka. Men vi har även många frikyrkor och väckelserörelser, av vilka de flesta är av evangelikalt och/eller pentekostalt snitt. De senaste decennierna har antalet frikyrkor minskat, men vi har också sett nya församlingar planteras – inte minst av missionärer från globala Syd.',
+    },
+    coordinator: { name: 'Olof Edsinger', title: 'Communications Coordinator' },
+    connect: { text: 'Follow the Swedish Evangelical Alliance for news and gatherings connected with Lausanne in Sweden.', label: 'Visit the Swedish Evangelical Alliance', href: 'https://www.sea.nu' },
+    social: [
+      { label: 'Facebook', href: 'https://www.facebook.com/svenskaevangeliskaalliansen' },
+      { label: 'YouTube', href: 'https://www.youtube.com/@StudioSEA/' },
+    ],
+    region: 'Northern Europe',
     updated: 'November 2026',
   },
   Switzerland: {

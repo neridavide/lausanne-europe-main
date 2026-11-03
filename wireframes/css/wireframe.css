@@ -2450,9 +2450,11 @@ img.wf-home-article-media {
 .wf-map-country-active { fill: #37c2b1; }
 .wf-map-country-emerging { fill: #75bfe3; }
 .wf-map-country-none { fill: #cfdee1; }
+.wf-map svg a:focus { outline: none; }
 .wf-map-country:hover,
-.wf-map-country:focus { fill: var(--brand-coral); stroke: #fff; filter: brightness(1.06); outline: none; }
-.wf-map-country:focus-visible { stroke: #fff; stroke-width: 3; }
+.wf-map svg a:focus .wf-map-country,
+.wf-map-country:hover { fill: var(--brand-coral); stroke: #fff; filter: brightness(1.06); }
+.wf-map svg a:focus-visible .wf-map-country { stroke: #fff; stroke-width: 3; }
 
 .wf-map-tooltip {
   position: absolute;
