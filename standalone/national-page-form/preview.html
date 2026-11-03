@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Preview your page | Lausanne Europe</title>
+  <link rel="stylesheet" href="form.css">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <script src="preview.js" defer></script>
+  <script src="page.js" defer></script>
+</head>
+<body>
+  <header class="nf-bar">
+    <div class="nf-bar-inner">
+      <img class="nf-bar-logo" src="logo.png" alt="Lausanne Movement Europe">
+      <span class="nf-bar-title">Preview of your page</span>
+      <div class="nf-bar-actions">
+        <a class="nf-btn nf-btn-outline" href="index.html">Back to the form</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="nf-main">
+    <p class="nf-example-banner">This is how your page will look with your answers so far. Grey text marks what you haven&rsquo;t filled in yet.</p>
+
+    <div class="nf-layout">
+      <div class="nf-profile">
+        <div class="nf-profile-head">
+          <h1 class="nf-profile-name" data-preview="country">Your country</h1>
+          <div class="nf-lang-switch" role="group" aria-label="Page language">
+            <button type="button" aria-pressed="true" data-preview="language">Your language</button>
+            <span class="nf-tooltip-anchor">
+              <button type="button" aria-pressed="false" aria-describedby="english-tooltip" data-english>English</button>
+              <span class="nf-tooltip" id="english-tooltip" role="tooltip" data-english-tooltip hidden>The English version will be translated by the Lausanne Europe team from your text, and sent to you to check before your page goes live.</span>
+            </span>
+          </div>
+        </div>
+
+        <section class="nf-block">
+          <h2 class="nf-block-title">About the movement</h2>
+          <div class="nf-block-body" data-preview="about"></div>
+        </section>
+
+        <section class="nf-block" data-preview="engage" hidden>
+          <h2 class="nf-block-title">Ways to engage</h2>
+          <div class="nf-block-body">
+            <ul class="nf-take-part" data-preview="engageList"></ul>
+          </div>
+        </section>
+
+        <section class="nf-block">
+          <div class="nf-block-body nf-coordinator">
+            <div>
+              <strong data-preview="coordinatorName">Your name</strong><br>
+              <span data-preview="coordinatorRole">Communications Coordinator | Your country</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside>
+        <section class="nf-block">
+          <h2 class="nf-block-title">Connect</h2>
+          <div class="nf-block-body nf-side-body">
+            <div class="nf-btn-stack">
+              <span class="nf-btn nf-btn-primary" data-preview="visit">Visit your movement</span>
+              <span class="nf-btn nf-btn-outline">Contact coordinator</span>
+            </div>
+          </div>
+        </section>
+        <section class="nf-block">
+          <h2 class="nf-block-title" data-preview="churchTitle">The church in your country</h2>
+          <div class="nf-block-body nf-side-body">
+            <p data-preview="church"></p>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

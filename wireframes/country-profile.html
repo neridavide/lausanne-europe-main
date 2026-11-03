@@ -30,32 +30,40 @@
 
     <div class="wf-sidebar-layout">
       <div>
-        <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:28px">
           <div class="wf-placeholder" style="width:80px;height:54px;min-height:54px" data-country-flag>Flag</div>
           <div>
             <h1 class="wf-page-title wf-copy" style="margin:0" data-country-name>[Country name]</h1>
             <span class="wf-tag wf-copy" data-country-status>[Movement status]</span>
           </div>
+          <div class="wf-lang-switch" role="group" aria-label="Page language" data-lang-switch hidden></div>
         </div>
 
         <div data-movement-content>
+          <p class="wf-page-intro wf-profile-summary wf-copy" data-profile-section="summary" data-profile-field="summary" data-translatable>[One line: the movement's vision]</p>
+
           <div class="wf-block">
             <div class="wf-block-title">About the movement</div>
-            <div class="wf-block-body" data-profile-about>
-              <p class="wf-copy-block">[Paragraph: history, vision, current activity in this country]</p>
-              <p class="wf-copy-block">[Optional second paragraph]</p>
+            <div class="wf-block-body" data-profile-about data-translatable>
+              <p class="wf-copy-block">[Paragraph: when it started, who is involved, its vision]</p>
+              <p class="wf-copy-block">[Paragraph: current activity and what&rsquo;s coming up]</p>
+            </div>
+          </div>
+
+          <div class="wf-block" data-profile-section="takePart">
+            <div class="wf-block-title">Take part</div>
+            <div class="wf-block-body">
+              <ul class="wf-take-part" data-profile-take-part data-translatable>
+                <li class="wf-copy">[Way to take part]</li>
+                <li class="wf-copy">[Way to take part]</li>
+              </ul>
             </div>
           </div>
 
           <div class="wf-block">
             <div class="wf-block-body">
-              <div style="display:flex;gap:16px;align-items:center">
-                <div class="wf-avatar" data-coordinator-photo></div>
-                <div>
-                  <strong class="wf-copy" data-profile-field="coordinator.name">[Coordinator name]</strong><br>
-                  <span class="wf-copy" style="font-size:14px" data-coordinator-role>[Communications Coordinator | Country]</span>
-                </div>
-              </div>
+              <strong class="wf-copy" data-profile-field="coordinator.name">[Coordinator name]</strong><br>
+              <span class="wf-copy" style="font-size:14px" data-coordinator-role>[Communications Coordinator | Country]</span>
             </div>
           </div>
 
@@ -84,6 +92,7 @@
               <a href="#" class="wf-btn wf-btn-primary" data-profile-field="connect.label" data-profile-link>[External link label]</a>
               <a href="contact.html" class="wf-btn wf-btn-outline" data-contact-movement>Contact coordinator</a>
             </div>
+            <ul class="wf-profile-social" aria-label="Social media" data-profile-section="social" data-profile-social hidden></ul>
           </div>
         </div>
         <div class="wf-block">
@@ -92,6 +101,12 @@
             <p><strong>Status:</strong> <span class="wf-copy" data-country-status>[Active / forming / etc.]</span></p>
             <p><strong>Region:</strong> <span class="wf-copy" data-profile-field="region">[Region name]</span></p>
             <p><strong>Last updated:</strong> <span class="wf-copy" data-profile-field="updated">[Date]</span></p>
+          </div>
+        </div>
+        <div class="wf-block" data-profile-section="church">
+          <div class="wf-block-title">The church in <span data-country-name>[Country]</span></div>
+          <div class="wf-block-body" style="font-size:14px">
+            <p class="wf-copy" style="margin:0" data-profile-field="church" data-translatable>[2&ndash;3 sentences, max 50 words: religious background, how the evangelical church developed, what is changing today]</p>
           </div>
         </div>
       </aside>

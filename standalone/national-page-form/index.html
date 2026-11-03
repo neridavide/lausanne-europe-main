@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Your national page | Lausanne Europe</title>
+  <link rel="stylesheet" href="form.css">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <script src="form.js" defer></script>
+</head>
+<body>
+  <header class="nf-bar">
+    <div class="nf-bar-inner">
+      <img class="nf-bar-logo" src="logo.png" alt="Lausanne Movement Europe">
+      <span class="nf-bar-title">National page form</span>
+      <div class="nf-bar-actions">
+        <span class="nf-save-status" data-save-status aria-live="polite">Saves automatically</span>
+        <a class="nf-btn nf-btn-outline nf-bar-preview" href="preview.html" data-save-before-open>Preview</a>
+        <button type="submit" class="nf-btn nf-btn-primary" form="national-page-form">Send for review</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="nf-main">
+    <h1 class="nf-title">Your national page</h1>
+    <p class="nf-intro">This information will appear on your country&rsquo;s page on the Lausanne Europe website. Please write it in your national language. If your page is in more than one language, fill in one form for each language group.</p>
+    <p class="nf-intro nf-intro-note">Every movement is at a different stage, so don&rsquo;t worry if you can&rsquo;t fill in everything: share what you have. Your answers save automatically, so you can come back later.</p>
+
+    <div class="nf-layout">
+      <form id="national-page-form" name="national-page" method="POST" action="thanks.html" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="national-page">
+        <!-- Netlify lists submissions under the "name" field; filled with the country on send. -->
+        <input type="hidden" name="name" data-submission-title>
+        <p class="nf-honeypot" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+        <fieldset class="nf-block">
+          <legend class="nf-block-title">1 &middot; Your movement</legend>
+          <div class="nf-block-body">
+            <div class="nf-pair">
+              <div class="nf-field">
+                <label class="nf-label" for="country">Country <span class="nf-required" aria-hidden="true">*</span></label>
+                <select class="nf-input" id="country" name="country" data-country required>
+                  <option value="">Select your country</option>
+                </select>
+              </div>
+              <div class="nf-field">
+                <label class="nf-label" for="movement-name">Movement name <span class="nf-required" aria-hidden="true">*</span> <span class="nf-lang">In your national language</span></label>
+                <input class="nf-input" id="movement-name" name="movementName" type="text" required>
+                <p class="nf-hint">As it should appear on the page, e.g. &ldquo;Movimiento de Lausana España&rdquo;.</p>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="nf-block">
+          <legend class="nf-block-title">2 &middot; Communications coordinator</legend>
+          <div class="nf-block-body">
+            <p class="nf-guide">The communications coordinator looks after your page and receives messages sent through it. It can be your national leader, but doesn&rsquo;t have to be: anyone in your movement who has time to handle communications is welcome.</p>
+            <div class="nf-pair">
+              <div class="nf-field">
+                <label class="nf-label" for="coordinator-name">Full name <span class="nf-required" aria-hidden="true">*</span></label>
+                <input class="nf-input" id="coordinator-name" name="coordinatorName" type="text" autocomplete="name" required>
+              </div>
+              <div class="nf-field">
+                <label class="nf-label" for="coordinator-email">Email address <span class="nf-required" aria-hidden="true">*</span></label>
+                <input class="nf-input" id="coordinator-email" name="coordinatorEmail" type="email" autocomplete="email" required>
+                <p class="nf-hint">Not shown on the website. Messages sent from the &ldquo;Contact coordinator&rdquo; button will reach you here.</p>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="nf-block">
+          <legend class="nf-block-title">3 &middot; Page content (in your national language)</legend>
+          <div class="nf-block-body">
+            <p class="nf-guide">Please write this section in your national language, so your page speaks directly to people in your country. The examples are in English only to show the idea.</p>
+            <div class="nf-field nf-short">
+              <label class="nf-label" for="language">Language you are writing in <span class="nf-required" aria-hidden="true">*</span></label>
+              <input class="nf-input" id="language" name="language" type="text" placeholder="e.g. Español" required>
+            </div>
+
+            <div class="nf-field">
+              <label class="nf-label" for="about">About the movement <span class="nf-required" aria-hidden="true">*</span> <span class="nf-lang">In your national language</span></label>
+              <p class="nf-hint nf-hint-top">When and how the movement started, who is involved, your vision, and what you are doing now.</p>
+              <textarea class="nf-input" id="about" name="about" rows="6" data-word-limit="80" required></textarea>
+              <p class="nf-word-count" data-word-count aria-live="polite"></p>
+              <details class="nf-example">
+                <summary>See an example (in English)</summary>
+                <div class="nf-example-body">
+                  <p>Lausanne Genovia sprang into life after the Fourth Lausanne Congress in 2024, with a particular vision to help Genovia&rsquo;s historic churches collaborate in mission with the new diaspora churches.</p>
+                  <p>The movement has been holding a series of regional Lausanne gatherings in cities around the country and has launched a podcast on whole-life discipleship. Its first Lausanne Genovia National Gathering is planned for June 2027.</p>
+                </div>
+              </details>
+            </div>
+
+            <div class="nf-field">
+              <label class="nf-label" for="church">The church in your country <span class="nf-required" aria-hidden="true">*</span> <span class="nf-lang">In your national language</span></label>
+              <p class="nf-hint nf-hint-top">Religious background, how the evangelical church developed, and what is changing today.</p>
+              <textarea class="nf-input" id="church" name="church" rows="4" data-word-limit="50" required></textarea>
+              <p class="nf-word-count" data-word-count aria-live="polite"></p>
+              <details class="nf-example">
+                <summary>See an example (in English)</summary>
+                <div class="nf-example-body">
+                  <p>Genovia is primarily Catholic, with Lutheran churches since the 1700s. The evangelical movement began with a revival in 1926 and grew with the arrival of Baptist, Pentecostal and independent missionaries in the 1960s. Since 2004, migration from Latin America has brought significant growth in diaspora churches across the country.</p>
+                </div>
+              </details>
+            </div>
+
+            <div class="nf-field">
+              <span class="nf-label" id="engage-label">Ways to engage <span class="nf-optional">Optional</span> <span class="nf-lang">In your national language</span></span>
+              <p class="nf-hint nf-hint-top">Up to three ways people can get involved with your movement, one line each.</p>
+              <div class="nf-lines" role="group" aria-labelledby="engage-label">
+                <input class="nf-input" name="engage1" type="text" aria-label="Way to engage 1">
+                <input class="nf-input" name="engage2" type="text" aria-label="Way to engage 2">
+                <input class="nf-input" name="engage3" type="text" aria-label="Way to engage 3">
+              </div>
+              <details class="nf-example">
+                <summary>See an example (in English)</summary>
+                <div class="nf-example-body">
+                  <ul>
+                    <li>Come to a regional Lausanne gathering near you</li>
+                    <li>Listen to the podcast on whole-life discipleship</li>
+                    <li>Save the date: Lausanne Genovia National Gathering, June 2027</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="nf-block-pair">
+          <fieldset class="nf-block">
+            <legend class="nf-block-title">4 &middot; Links <small>Optional</small></legend>
+            <div class="nf-block-body">
+              <div class="nf-field">
+                <label class="nf-label" for="links">Website and social media</label>
+                <p class="nf-hint nf-hint-top">Paste your links here, one per line: website, Facebook, Instagram, YouTube or anything else.</p>
+                <textarea class="nf-input" id="links" name="links" rows="5" placeholder="https://"></textarea>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="nf-block">
+            <legend class="nf-block-title">5 &middot; Events and content <small>Optional</small></legend>
+            <div class="nf-block-body">
+              <div class="nf-field">
+                <label class="nf-label" for="events-content">Upcoming events, stories, podcasts or resources</label>
+                <p class="nf-hint nf-hint-top">Anything you&rsquo;d like featured on your page. For each one, a name and a link is enough; add the date and city for events.</p>
+                <textarea class="nf-input" id="events-content" name="eventsContent" rows="5"></textarea>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <p class="nf-error" data-error role="alert" hidden></p>
+        <div class="nf-submit-row">
+          <button type="submit" class="nf-btn nf-btn-primary">Send for review</button>
+          <span class="nf-note">We&rsquo;ll check your page and let you know when it&rsquo;s live.</span>
+        </div>
+      </form>
+
+      <aside class="nf-aside">
+        <div class="nf-block">
+          <div class="nf-block-title">See your page</div>
+          <div class="nf-block-body">
+            <p>Preview your page with your answers so far, or see a finished example. Genovia is a fictional country.</p>
+            <div class="nf-btn-stack">
+              <a class="nf-btn nf-btn-primary" href="preview.html" data-save-before-open>Preview your page</a>
+              <a class="nf-btn nf-btn-outline" href="example.html" data-save-before-open>View example page</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

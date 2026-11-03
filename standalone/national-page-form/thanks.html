@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Thank you | Lausanne Europe</title>
+  <link rel="stylesheet" href="form.css">
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+  <header class="nf-bar">
+    <div class="nf-bar-inner">
+      <img class="nf-bar-logo" src="logo.png" alt="Lausanne Movement Europe">
+      <span class="nf-bar-title">National page form</span>
+    </div>
+  </header>
+  <main class="nf-main">
+    <div class="nf-done">
+      <span class="nf-done-mark" aria-hidden="true">&#10003;</span>
+      <h1>Thank you</h1>
+      <p>Your page content is with the Lausanne Europe team for review. We&rsquo;ll be in touch when your national page is live.</p>
+      <p class="nf-note" data-preview-note hidden>Local preview: nothing was sent, and your draft is still saved.</p>
+    </div>
+  </main>
+  <script>
+    // A real submission clears the draft; a local preview keeps it.
+    if (new URLSearchParams(window.location.search).has('preview')) {
+      document.querySelector('[data-preview-note]').hidden = false;
+    } else {
+      try { localStorage.removeItem('lausanne-national-page-draft'); } catch {}
+    }
+  </script>
+</body>
+</html>
