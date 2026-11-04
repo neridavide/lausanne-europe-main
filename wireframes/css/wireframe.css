@@ -1833,6 +1833,95 @@ img.wf-home-article-media {
   outline-offset: 3px;
 }
 
+/* Core documents of the Lausanne Movement, pinned above the resource library. */
+.wf-core-docs {
+  display: grid;
+  gap: 14px;
+  margin: 8px 0 0;
+}
+
+.wf-core-docs .wf-section-heading { margin: 0 0 10px; }
+.wf-core-docs-intro { margin: 0 0 18px; color: var(--brand-muted); }
+
+.wf-core-docs-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wf-core-doc {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+  padding: 16px 18px;
+  border: 1px solid var(--brand-border);
+  border-left: 4px solid var(--brand-teal);
+  background: var(--brand-surface);
+  color: inherit;
+  text-decoration: none;
+}
+
+.wf-core-doc:hover { border-color: var(--brand-teal-light); text-decoration: none; }
+.wf-core-doc:focus-visible { outline: 3px solid var(--brand-teal-light); outline-offset: 3px; }
+
+.wf-core-doc-year {
+  color: var(--brand-teal);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.wf-core-doc-title {
+  color: var(--brand-navy);
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.wf-core-doc-title span { color: var(--brand-teal); font-size: .85em; }
+.wf-core-doc-text { color: var(--brand-muted); font-size: .88rem; line-height: 1.4; }
+
+/* Legacy strip: heading | text | button side by side. */
+.wf-core-docs-legacy {
+  display: grid;
+  grid-template-columns: minmax(200px, .8fr) minmax(0, 1.7fr) auto;
+  align-items: center;
+  gap: 28px;
+  padding: 18px 24px;
+  background: var(--brand-bg);
+  border: 1px solid var(--brand-border);
+}
+
+.wf-core-docs-legacy .wf-resource-feature-label { margin-bottom: 6px; }
+
+.wf-core-docs-legacy h3 {
+  margin: 0;
+  color: var(--brand-navy);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  line-height: 1.1;
+}
+
+.wf-core-docs-legacy p { margin: 0; color: var(--brand-muted); font-size: .92rem; line-height: 1.45; }
+.wf-core-docs-legacy .wf-core-docs-legacy-more { margin-top: 6px; font-size: .85rem; }
+.wf-core-docs-legacy .wf-btn { white-space: nowrap; }
+
+.wf-resource-library-heading { margin-top: 64px; }
+
+@media (max-width: 1050px) {
+  .wf-core-docs-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wf-core-docs-legacy { grid-template-columns: minmax(0, 1fr) auto; gap: 10px 24px; }
+  .wf-core-docs-legacy-head,
+  .wf-core-docs-legacy-body { grid-column: 1; }
+  .wf-core-docs-legacy .wf-btn { grid-column: 2; grid-row: 1 / span 2; }
+}
+
 .wf-resource-feature { margin-bottom: 46px; }
 
 .wf-resource-feature-label {
@@ -3060,6 +3149,10 @@ img.wf-home-article-media {
   .wf-filter-bar select,
   .wf-filter-bar input { width: 100%; min-width: 0; }
 
+  .wf-core-docs-list { grid-template-columns: 1fr; gap: 10px; }
+  .wf-core-docs-legacy { grid-template-columns: 1fr; gap: 12px; padding: 18px 20px; }
+  .wf-core-docs-legacy .wf-btn { grid-column: 1; grid-row: auto; justify-self: start; }
+  .wf-resource-library-heading { margin-top: 48px; }
   .wf-resource-feature-card { grid-template-columns: 1fr; }
   .wf-resource-feature-card > img { min-height: 210px; height: 210px; }
   .wf-resource-feature-card > div { padding: 28px 22px; }
