@@ -31,12 +31,31 @@ const networks = [
   ["Lausanne Persecuted Church Initiative", "", "https://lausanne.org/network/lausanne-persecuted-church-initiative", "https://lausanne.org/wp-content/uploads/2025/08/persecuted-church-initiative-icons-1.jpg", []]
 ];
 
+// Global catalysts known to be based in Europe: listed first and highlighted.
+const europeBasedCatalysts = new Set([
+  "https://lausanne.org/leader/jo-plummer", // Business as Mission
+  "https://lausanne.org/leader/phil-green", // Children-at-Risk
+  "https://lausanne.org/leader/dave-bookless", // Creation Care
+  "https://lausanne.org/leader/helen-wordsworth", // Health
+  "https://lausanne.org/leader/phil-hilditch", // Integral Mission
+  "https://lausanne.org/leader/asia-j-williamson", // Leadership Development
+  "https://lausanne.org/leader/redina-kolaneci", // Ministry Fundraising
+  "https://lausanne.org/leader/michael-ots", // Proclamation Evangelism
+  "https://lausanne.org/leader/chris-maynard", // Research and Strategic Information
+  "https://lausanne.org/leader/francina-de-pater", // International Student Ministry
+  "https://lausanne.org/leader/steinar-opheim" // Tentmaking
+]);
+
 const list = document.querySelector("[data-issue-networks]");
 
 if (list) {
   list.innerHTML = networks.map(([name, description, profile, icon, catalysts]) => {
-    const catalystLinks = catalysts.length
-      ? catalysts.map(([catalystName, catalystProfile]) => `<a href="${catalystProfile}" target="_blank" rel="noreferrer">${catalystName}</a>`).join(", ")
+    const isEurope = ([, catalystProfile]) => europeBasedCatalysts.has(catalystProfile);
+    const orderedCatalysts = [...catalysts.filter(isEurope), ...catalysts.filter((catalyst) => !isEurope(catalyst))];
+    const catalystLinks = orderedCatalysts.length
+      ? orderedCatalysts.map(([catalystName, catalystProfile]) => europeBasedCatalysts.has(catalystProfile)
+        ? `<a class="wf-catalyst-europe" href="${catalystProfile}" target="_blank" rel="noreferrer" title="Based in Europe">${catalystName}</a>`
+        : `<a href="${catalystProfile}" target="_blank" rel="noreferrer">${catalystName}</a>`).join(", ")
       : "No global catalyst currently listed";
 
     return `
@@ -49,10 +68,6 @@ if (list) {
           ${description ? `<p>${description}</p>` : ""}
         </div>
         <div class="wf-issue-details">
-          <div class="wf-issue-detail">
-            <span>Europe activity</span>
-            <strong class="wf-issue-pending"><i></i>To be confirmed</strong>
-          </div>
           <div class="wf-issue-detail">
             <span>Global catalysts</span>
             <div>${catalystLinks}</div>
