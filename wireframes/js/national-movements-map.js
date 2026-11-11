@@ -34,6 +34,18 @@ const mapNode = document.querySelector('[data-national-movement-map]');
 if (mapNode) {
   const width = 1000;
   const height = 580;
+  // The projection is laid out on a fixed 1000x580 canvas; the visible viewBox
+  // height then adapts to the container so phones get a taller, squarer map
+  // instead of a thin letterboxed strip.
+  const viewportAspect = () => {
+    const containerWidth = mapNode.clientWidth || width;
+    if (containerWidth < 560) return 1.05;
+    if (containerWidth < 900) return .75;
+    return height / width;
+  };
+  let viewHeight = Math.round(width * viewportAspect());
+  const minScale = .8;
+  const maxScale = 40;
   const namespace = 'http://www.w3.org/2000/svg';
   const collection = feature(countriesTopology, countriesTopology.objects.countries);
   const ukraine = collection.features.find(({ id }) => String(id).padStart(3, '0') === '804');
@@ -74,10 +86,10 @@ if (mapNode) {
   // so Europe fills the initial view without requiring visitors to zoom first.
   const initialFocus = [europeCenter[0] + 45, europeCenter[1] - 34];
   const initialScale = 5.2;
-  const initialTransform = { scale: initialScale, x: width / 2 - initialFocus[0] * initialScale, y: height / 2 - initialFocus[1] * initialScale };
-  const state = { ...initialTransform, drag: null, didDrag: false };
+  const initialTransform = () => ({ scale: initialScale, x: width / 2 - initialFocus[0] * initialScale, y: viewHeight / 2 - initialFocus[1] * initialScale });
+  const state = { ...initialTransform(), didDrag: false };
 
-  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  svg.setAttribute('viewBox', `0 0 ${width} ${viewHeight}`);
   svg.setAttribute('role', 'img');
   svg.setAttribute('aria-label', 'Zoomable map of European countries. Select a country to open its national movement profile.');
   svg.setAttribute('tabindex', '0');
@@ -87,9 +99,9 @@ if (mapNode) {
   mapNode.classList.add('wf-map-is-navigable');
 
   const updateTransform = () => mapLayer.setAttribute('transform', `translate(${state.x} ${state.y}) scale(${state.scale})`);
-  const resetMap = () => { state.scale = initialTransform.scale; state.x = initialTransform.x; state.y = initialTransform.y; updateTransform(); };
-  const zoomAt = (factor, point = [width / 2, height / 2]) => {
-    const nextScale = Math.min(7, Math.max(.8, state.scale * factor));
+  const resetMap = () => { Object.assign(state, initialTransform()); updateTransform(); };
+  const zoomAt = (factor, point = [width / 2, viewHeight / 2]) => {
+    const nextScale = Math.min(maxScale, Math.max(minScale, state.scale * factor));
     const ratio = nextScale / state.scale;
     state.x = point[0] - (point[0] - state.x) * ratio;
     state.y = point[1] - (point[1] - state.y) * ratio;
@@ -98,7 +110,7 @@ if (mapNode) {
   };
   const svgPoint = (event) => {
     const rect = svg.getBoundingClientRect();
-    return [(event.clientX - rect.left) * (width / rect.width), (event.clientY - rect.top) * (height / rect.height)];
+    return [(event.clientX - rect.left) * (width / rect.width), (event.clientY - rect.top) * (viewHeight / rect.height)];
   };
   const setTooltipPosition = (event) => {
     const rect = mapNode.getBoundingClientRect();
@@ -142,27 +154,87 @@ if (mapNode) {
   });
 
   svg.addEventListener('wheel', (event) => { event.preventDefault(); zoomAt(event.deltaY < 0 ? 1.16 : .86, svgPoint(event)); }, { passive: false });
+
+  // Pointer gestures: one pointer pans (starting anywhere, including on a
+  // country), two pointers pinch-zoom around their midpoint. A tap that never
+  // moves past the threshold still follows the country link.
+  const pointers = new Map();
+  let gesture = null;
+  // Capture can throw if the pointer was already released or cancelled; panning still works without it.
+  const capture = (id) => { try { if (!svg.hasPointerCapture(id)) svg.setPointerCapture(id); } catch { /* ignore */ } };
+  const startGesture = () => {
+    const points = [...pointers.values()].map(svgPoint);
+    const midpoint = points.length > 1
+      ? [(points[0][0] + points[1][0]) / 2, (points[0][1] + points[1][1]) / 2]
+      : points[0];
+    const distance = points.length > 1 ? Math.hypot(points[0][0] - points[1][0], points[0][1] - points[1][1]) : 0;
+    gesture = { midpoint, distance, scale: state.scale, x: state.x, y: state.y, moved: gesture?.moved ?? false };
+  };
   svg.addEventListener('pointerdown', (event) => {
-    if (event.target.closest('a')) return;
-    state.drag = { x: event.clientX, y: event.clientY, originX: state.x, originY: state.y };
-    state.didDrag = false;
-    svg.setPointerCapture(event.pointerId);
+    if (event.pointerType === 'mouse' && event.button !== 0) return;
+    pointers.set(event.pointerId, event);
+    if (pointers.size > 2) return;
+    if (pointers.size === 1) state.didDrag = false;
+    startGesture();
+    if (pointers.size === 2) {
+      gesture.moved = true;
+      state.didDrag = true;
+      tooltip.hidden = true;
+      pointers.forEach((_, id) => capture(id));
+    }
   });
   svg.addEventListener('pointermove', (event) => {
-    if (!state.drag) return;
-    const rect = svg.getBoundingClientRect();
-    const dx = (event.clientX - state.drag.x) * (width / rect.width);
-    const dy = (event.clientY - state.drag.y) * (height / rect.height);
-    state.didDrag = state.didDrag || Math.hypot(dx, dy) > 4;
-    state.x = state.drag.originX + dx;
-    state.y = state.drag.originY + dy;
+    if (!gesture || !pointers.has(event.pointerId)) return;
+    pointers.set(event.pointerId, event);
+    const points = [...pointers.values()].slice(0, 2).map(svgPoint);
+    const midpoint = points.length > 1
+      ? [(points[0][0] + points[1][0]) / 2, (points[0][1] + points[1][1]) / 2]
+      : points[0];
+    const dx = midpoint[0] - gesture.midpoint[0];
+    const dy = midpoint[1] - gesture.midpoint[1];
+    if (!gesture.moved) {
+      // Convert the movement threshold to screen pixels so it feels the same at any map size.
+      const rect = svg.getBoundingClientRect();
+      if (Math.hypot(dx * rect.width / width, dy * rect.height / viewHeight) < 6) return;
+      gesture.moved = true;
+      state.didDrag = true;
+      tooltip.hidden = true;
+      // Capture only once a drag starts, so a plain tap still clicks the country underneath.
+      capture(event.pointerId);
+    }
+    let scale = gesture.scale;
+    if (points.length > 1 && gesture.distance) {
+      const distance = Math.hypot(points[0][0] - points[1][0], points[0][1] - points[1][1]);
+      scale = Math.min(maxScale, Math.max(minScale, gesture.scale * (distance / gesture.distance)));
+    }
+    const ratio = scale / gesture.scale;
+    state.scale = scale;
+    state.x = midpoint[0] - (gesture.midpoint[0] - gesture.x) * ratio;
+    state.y = midpoint[1] - (gesture.midpoint[1] - gesture.y) * ratio;
     updateTransform();
   });
-  svg.addEventListener('pointerup', (event) => {
-    state.drag = null;
-    svg.releasePointerCapture(event.pointerId);
+  const endPointer = (event) => {
+    if (!pointers.delete(event.pointerId)) return;
+    if (svg.hasPointerCapture(event.pointerId)) svg.releasePointerCapture(event.pointerId);
+    if (pointers.size) { startGesture(); return; }
+    gesture = null;
+    // Let the click that follows a drag see didDrag before clearing it.
     window.setTimeout(() => { state.didDrag = false; }, 0);
-  });
+  };
+  svg.addEventListener('pointerup', endPointer);
+  svg.addEventListener('pointercancel', endPointer);
+  svg.addEventListener('dblclick', (event) => { event.preventDefault(); zoomAt(1.6, svgPoint(event)); });
+
+  // Keep the map centred on the same spot when the container changes shape (e.g. rotating a phone).
+  new ResizeObserver(() => {
+    const nextHeight = Math.round(width * viewportAspect());
+    if (nextHeight === viewHeight) return;
+    state.y += (nextHeight - viewHeight) / 2;
+    viewHeight = nextHeight;
+    svg.setAttribute('viewBox', `0 0 ${width} ${viewHeight}`);
+    updateTransform();
+  }).observe(mapNode);
+
   svg.addEventListener('keydown', (event) => {
     if (event.key === '+' || event.key === '=') { event.preventDefault(); zoomAt(1.16); }
     if (event.key === '-') { event.preventDefault(); zoomAt(.86); }
@@ -172,6 +244,10 @@ if (mapNode) {
   updateTransform();
   svg.append(mapLayer);
   mapNode.append(svg, tooltip);
+  const instructions = mapNode.querySelector('.wf-map-instructions');
+  if (instructions && window.matchMedia('(pointer: coarse)').matches) {
+    instructions.textContent = 'Drag to explore · Pinch to zoom';
+  }
   mapNode.closest('.wf-movement-map').querySelectorAll('[data-map-action]').forEach((button) => {
     button.addEventListener('click', () => {
       if (button.dataset.mapAction === 'in') zoomAt(1.24);

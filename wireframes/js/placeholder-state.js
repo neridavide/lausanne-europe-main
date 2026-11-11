@@ -1,6 +1,9 @@
 import { renderCampaign } from './campaign.js';
+import { initSiteNav } from './site-nav.js';
 
 (() => {
+  initSiteNav();
+
   // This script lives one level below the site root (js/ in dev, assets/ when built),
   // so footer links resolve correctly from pages in subfolders such as gatherings/.
   const scriptUrl = import.meta.url;

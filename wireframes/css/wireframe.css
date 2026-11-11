@@ -205,6 +205,59 @@ h1, h2, h3, h4, .wf-page-title, .wf-section-heading {
   outline-offset: 3px;
 }
 
+/* Mobile menu toggle (injected by js/site-nav.js); hidden on desktop. */
+.wf-nav-toggle {
+  display: none;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  margin-right: -10px;
+  padding: 0 10px;
+  color: var(--brand-navy);
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wf-nav-toggle:focus-visible {
+  outline: 3px solid var(--brand-gold);
+  outline-offset: 2px;
+}
+
+.wf-nav-toggle-icon,
+.wf-nav-toggle-icon::before,
+.wf-nav-toggle-icon::after {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  transition: transform .18s ease, background-color .18s ease;
+}
+
+.wf-nav-toggle-icon { position: relative; }
+
+.wf-nav-toggle-icon::before,
+.wf-nav-toggle-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.wf-nav-toggle-icon::before { top: -5px; }
+.wf-nav-toggle-icon::after { top: 5px; }
+
+.wf-nav-open .wf-nav-toggle-icon { background-color: transparent; }
+.wf-nav-open .wf-nav-toggle-icon::before { transform: translateY(5px) rotate(45deg); }
+.wf-nav-open .wf-nav-toggle-icon::after { transform: translateY(-5px) rotate(-45deg); }
+
 /* Keep the full menu on one line between the mobile breakpoint and wide desktops. */
 @media (min-width: 901px) and (max-width: 1120px) {
   .wf-header-inner { gap: 16px; }
@@ -473,30 +526,60 @@ h1, h2, h3, h4, .wf-page-title, .wf-section-heading {
     grid-template-columns: 1fr;
   }
 
-  .wf-nav {
-    display: none;
-  }
-
   .wf-header-inner {
     min-height: 70px;
   }
 
-  .wf-header-inner::after {
-    content: "MENU";
-    width: auto;
-    height: auto;
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-    color: var(--brand-navy);
-    font-family: var(--font-heading);
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: .1em;
-    padding: 9px 0 9px 24px;
-    background: linear-gradient(var(--brand-navy), var(--brand-navy)) 0 13px / 15px 2px no-repeat,
-      linear-gradient(var(--brand-navy), var(--brand-navy)) 0 18px / 15px 2px no-repeat,
-      linear-gradient(var(--brand-navy), var(--brand-navy)) 0 23px / 15px 2px no-repeat;
+  .wf-nav-toggle {
+    display: inline-flex;
+  }
+
+  .wf-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 0;
+    max-height: calc(100vh - 70px);
+    max-height: calc(100dvh - 70px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 8px 24px 22px;
+    background: var(--brand-surface);
+    border-top: 1px solid #dbe6e6;
+    box-shadow: 0 18px 30px rgba(9, 59, 78, 0.14);
+  }
+
+  .wf-header.wf-nav-open .wf-nav {
+    display: flex;
+  }
+
+  .wf-nav a {
+    padding: 15px 2px;
+    border-bottom: 1px solid #e4eded;
+    font-size: 18px;
+  }
+
+  .wf-nav a.active {
+    border-bottom-color: #e4eded;
+    box-shadow: inset 4px 0 0 var(--brand-teal-light);
+    padding-left: 14px;
+  }
+
+  .wf-nav a.wf-utility {
+    justify-content: center;
+    margin-top: 12px;
+    padding: 13px 16px;
+    font-size: 14px;
+    border: 1px solid var(--brand-border);
+  }
+
+  .wf-nav a.wf-utility:not([href$="contact.html"]) {
+    border-color: var(--brand-navy);
   }
 }
 
@@ -2467,9 +2550,11 @@ img.wf-home-article-media {
   display: block;
   width: 100%;
   height: auto;
-  min-height: 350px;
   cursor: grab;
   touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .wf-page-movements .wf-map svg:active { cursor: grabbing; }
@@ -3201,6 +3286,12 @@ img.wf-home-article-media {
   .wf-page-event .wf-sidebar-layout > :first-child .wf-btn { background: #fff; color: var(--brand-navy); }
 
   .wf-page-movements .wf-map { min-height: 240px; }
+  .wf-movement-map { margin: 32px 0 28px; padding: 22px 0 0; border: 0; box-shadow: none; background: transparent; }
+  .wf-movement-map-heading { display: block; margin-bottom: 16px; }
+  .wf-movement-map-heading > p { margin-top: 10px; }
+  .wf-map-controls { top: 10px; right: 10px; grid-template-columns: 44px 44px auto; }
+  .wf-map-controls button { min-height: 44px; }
+  .wf-map-instructions { left: 10px; bottom: 10px; }
   .wf-page-movements .wf-filter-bar { padding: 0; }
   .wf-page-movements .wf-filter-bar input { min-width: 0; }
   .wf-country-directory { margin-bottom: 38px; padding: 30px 18px; }
@@ -3273,7 +3364,7 @@ img.wf-home-article-media {
 @media (max-width: 380px) {
   .wf-header-inner { padding-left: 14px; padding-right: 14px; }
   .wf-logo { width: 170px; height: 50px; }
-  .wf-header-inner::after { font-size: 13px; }
+  .wf-nav { padding-left: 14px; padding-right: 14px; }
   .wf-hero h1 { font-size: 2.55rem; }
 }
 
