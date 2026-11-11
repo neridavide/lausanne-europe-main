@@ -2920,6 +2920,11 @@ img.wf-home-article-media {
 .wf-take-part { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
 .wf-take-part li { position: relative; padding-left: 28px; }
 .wf-take-part li::before { content: "›"; position: absolute; left: 6px; color: var(--brand-teal); font-size: 1.4em; font-weight: 700; line-height: 1; top: -1px; }
+.wf-profile-resources { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.wf-profile-resources li { display: grid; gap: 2px; padding-left: 14px; border-left: 3px solid var(--brand-teal-light); }
+.wf-profile-resources a { color: var(--brand-teal-dark); font-weight: 600; }
+.wf-profile-resources span { color: var(--brand-muted); font-size: 14px; }
+[data-profile-link][hidden] { display: none; }
 .wf-country-mark.wf-profile-flag { width: auto; height: auto; font-size: 64px; }
 .wf-card-img-photo { opacity: 1; background-position: center; background-size: cover; }
 /* Icons start flush with the left edge of the buttons above. */

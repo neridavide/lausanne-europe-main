@@ -35,11 +35,33 @@ const renderProfile = (profile) => {
     }));
   });
 
+  // Events and resources: a title, linked when there is a page for it, and an
+  // optional line for the date and place or a short description.
+  document.querySelectorAll('[data-profile-resources]').forEach((list) => {
+    list.replaceChildren(...(profile.resources ?? []).map(({ title, detail, href }) => {
+      const item = document.createElement('li');
+      const name = document.createElement(href ? 'a' : 'strong');
+      name.textContent = title;
+      if (href) name.href = href;
+      item.append(name);
+      if (detail) {
+        const line = document.createElement('span');
+        line.textContent = detail;
+        item.append(line);
+      }
+      return item;
+    }));
+  });
+
   document.querySelectorAll('[data-profile-field]').forEach((element) => {
     const value = element.dataset.profileField.split('.').reduce((field, key) => field?.[key], profile);
     if (value) fill(element, value);
   });
-  document.querySelectorAll('[data-profile-link]').forEach((link) => { link.href = profile.connect.href; });
+  // A movement without a website keeps the Connect text but loses the button.
+  document.querySelectorAll('[data-profile-link]').forEach((link) => {
+    link.hidden = !profile.connect?.href;
+    if (profile.connect?.href) link.href = profile.connect.href;
+  });
 
   // Social media links sit under the website button, when a profile has any,
   // as brand icons; a network without an icon falls back to its name.
