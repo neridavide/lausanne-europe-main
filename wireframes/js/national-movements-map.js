@@ -1,5 +1,5 @@
 import { geoNaturalEarth1, geoPath } from 'd3-geo';
-import { feature } from 'topojson-client';
+import { feature, merge } from 'topojson-client';
 import countriesTopology from 'world-atlas/countries-110m.json';
 import { countryRecords, countryFlagCodes, flagEmoji, statusLabel } from './national-movements-data.js';
 
@@ -47,7 +47,19 @@ if (mapNode) {
   const minScale = .8;
   const maxScale = 40;
   const namespace = 'http://www.w3.org/2000/svg';
-  const collection = feature(countriesTopology, countriesTopology.objects.countries);
+  // The source atlas splits Cyprus into "Cyprus" and an unnumbered "N. Cyprus".
+  // Merge them so the whole island is one country, with no internal border.
+  const isNorthernCyprus = ({ properties }) => properties?.name === 'N. Cyprus';
+  const cyprusGeometries = countriesTopology.objects.countries.geometries
+    .filter((geometry) => geometry.id === '196' || isNorthernCyprus(geometry));
+  const unitedCyprus = merge(countriesTopology, cyprusGeometries);
+  const allCountries = feature(countriesTopology, countriesTopology.objects.countries);
+  const collection = {
+    ...allCountries,
+    features: allCountries.features
+      .filter((country) => !isNorthernCyprus(country))
+      .map((country) => (country.id === '196' ? { ...country, geometry: unitedCyprus } : country))
+  };
   const ukraine = collection.features.find(({ id }) => String(id).padStart(3, '0') === '804');
   const ukraineOuterRing = ukraine.geometry.coordinates[0];
   const crimeaOuterRing = crimeaCoordinates[0];
