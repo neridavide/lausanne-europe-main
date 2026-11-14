@@ -1,5 +1,4 @@
-// National page form: word counters, drafts saved in this browser, and
-// submission to Netlify Forms.
+// National page form: drafts saved in this browser and submission to Netlify Forms.
 (() => {
   const DRAFT_KEY = 'lausanne-national-page-draft';
   const COUNTRIES = [
@@ -15,17 +14,6 @@
   const error = form.querySelector('[data-error]');
 
   form.querySelector('[data-country]').append(...COUNTRIES.map((name) => new Option(name, name)));
-
-  // Word counters
-  const countWords = (text) => text.trim().split(/\s+/).filter(Boolean).length;
-  const limitedFields = [...form.querySelectorAll('[data-word-limit]')];
-  const updateCount = (field) => {
-    const words = countWords(field.value);
-    const counter = field.parentElement.querySelector('[data-word-count]');
-    counter.textContent = `${words} / ${field.dataset.wordLimit} words`;
-    counter.classList.toggle('is-over', words > Number(field.dataset.wordLimit));
-  };
-  limitedFields.forEach((field) => field.addEventListener('input', () => updateCount(field)));
 
   // Drafts live in this browser only.
   const namedFields = () => [...form.elements]
@@ -95,8 +83,7 @@
   };
 
   // Problem fields turn red on send, and back to normal once edited.
-  const isProblem = (field) => !field.checkValidity()
-    || (field.dataset.wordLimit && countWords(field.value) > Number(field.dataset.wordLimit));
+  const isProblem = (field) => !field.checkValidity();
   const clearMark = (event) => {
     event.target.classList.remove('is-invalid');
     if (!form.querySelector('.is-invalid')) error.hidden = true;
@@ -110,10 +97,7 @@
     const problems = [...form.elements].filter((field) => field.name && field.type !== 'hidden' && isProblem(field));
     if (problems.length) {
       problems.forEach((field) => field.classList.add('is-invalid'));
-      const overLimit = problems.some((field) => field.validity.valid);
-      error.textContent = overLimit
-        ? 'Please check the fields marked in red: some are missing or over their word limit.'
-        : 'Please fill in the fields marked in red.';
+      error.textContent = 'Please fill in the fields marked in red.';
       error.hidden = false;
       problems[0].scrollIntoView({ block: 'center', behavior: 'smooth' });
       problems[0].focus({ preventScroll: true });
@@ -134,5 +118,4 @@
   });
 
   restoreDraft();
-  limitedFields.forEach(updateCount);
 })();

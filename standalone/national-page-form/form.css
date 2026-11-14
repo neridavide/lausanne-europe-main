@@ -128,8 +128,6 @@ select.nf-input { appearance: none; padding-right: 40px; background: var(--field
 .nf-short { max-width: 220px; }
 .nf-lines { display: grid; gap: 8px; }
 
-.nf-word-count { margin: 6px 0 0; color: var(--muted); font-size: 12px; text-align: right; }
-.nf-word-count.is-over { color: var(--coral); font-weight: 700; }
 
 .nf-example { margin-top: 8px; font-size: 14px; }
 .nf-example summary { width: fit-content; color: var(--teal-dark); font-weight: 700; cursor: pointer; }
